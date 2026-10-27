@@ -14,4 +14,13 @@ public class CelestialBody {
     private double radius; // Kilometres (km).
     private double distanceFromSun; // Kilometres (km), measured from the Sun's centre.
     private String description;
+
+    public CelestialBody(String name, double mass, double radius,
+            double distanceFromSun, String description) {
+        this.name = name;
+        this.mass = mass;
+        this.radius = radius;
+        this.distanceFromSun = distanceFromSun;
+        this.description = description;
+    }
 }
