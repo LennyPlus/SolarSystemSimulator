@@ -9,8 +9,8 @@
    <children>
       <Label text="Solar System Simulator" />
       <Button fx:id="newSimulationButton" onAction="#switchToSecondary" prefWidth="200.0" text="New Simulation" />
-      <Button fx:id="loadSimulationButton" prefWidth="200.0" text="Load Simulation" />
-      <Button fx:id="creditsButton" prefWidth="200.0" text="Credits" />
+      <Button fx:id="loadSimulationButton" onAction="#loadSimulationButtonPressed" prefWidth="200.0" text="Load Simulation" />
+      <Button fx:id="creditsButton" onAction="#creditsButtonPressed" prefWidth="200.0" text="Credits" />
       <Button fx:id="quitButton" prefWidth="200.0" text="Quit" />
    </children>
    <padding>
