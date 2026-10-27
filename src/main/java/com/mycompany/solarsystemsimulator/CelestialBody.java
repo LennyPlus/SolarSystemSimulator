@@ -23,4 +23,24 @@ public class CelestialBody {
         this.distanceFromSun = distanceFromSun;
         this.description = description;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getMass() {
+        return mass;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public double getDistanceFromSun() {
+        return distanceFromSun;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
