@@ -14,12 +14,19 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private static Stage mainStage;
 
     @Override
     public void start(Stage stage) throws IOException {
+        mainStage = stage;
         scene = new Scene(loadFXML("primary"), 640, 480);
+        stage.setTitle("Solar System Simulator");
         stage.setScene(scene);
         stage.show();
+    }
+
+    static void closeWindow() {
+        mainStage.close();
     }
 
     static void setRoot(String fxml) throws IOException {
