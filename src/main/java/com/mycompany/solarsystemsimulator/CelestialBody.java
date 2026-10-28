@@ -4,6 +4,8 @@
  */
 package com.mycompany.solarsystemsimulator;
 
+import javafx.geometry.Point3D;
+
 /**
  *
  * @author arin.kbr
@@ -14,6 +16,11 @@ public class CelestialBody {
     private double radius; // Kilometres (km).
     private double distanceFromSun; // Kilometres (km), measured from the Sun's centre.
     private String description;
+    
+    // Motion vectors
+    private Point3D position;
+    private Point3D velocity;
+    private Point3D acceleration;
 
     public CelestialBody(String name, double mass, double radius,
             double distanceFromSun, String description) {
@@ -22,6 +29,18 @@ public class CelestialBody {
         this.radius = radius;
         this.distanceFromSun = distanceFromSun;
         this.description = description;
+    }
+
+    public void setPosition(Point3D position) {
+        this.position = position;
+    }
+
+    public void setVelocity(Point3D velocity) {
+        this.velocity = velocity;
+    }
+
+    public void setAcceleration(Point3D acceleration) {
+        this.acceleration = acceleration;
     }
 
     public String getName() {
@@ -42,5 +61,17 @@ public class CelestialBody {
 
     public String getDescription() {
         return description;
+    }
+
+    public Point3D getPosition() {
+        return position;
+    }
+
+    public Point3D getVelocity() {
+        return velocity;
+    }
+
+    public Point3D getAcceleration() {
+        return acceleration;
     }
 }
