@@ -5,6 +5,7 @@
 package com.mycompany.solarsystemsimulator;
 
 import javafx.geometry.Point3D;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -14,6 +15,7 @@ public class Body {
     private String name;
     private double mass; // Kilograms (kg).
     private double radius; // Kilometres (km).
+    private Color color;
     private String description;
     
     // Motion vectors
@@ -21,10 +23,11 @@ public class Body {
     private Point3D velocity;
     private Point3D acceleration;
 
-    public Body(String name, double mass, double radius, Point3D position, Point3D velocity) {
+    public Body(String name, double mass, double radius, Color color, Point3D position, Point3D velocity) {
         this.name = name;
         this.mass = mass;
         this.radius = radius;
+        this.color = color;
         this.position = position;
         this.velocity = velocity;
     }
@@ -60,6 +63,10 @@ public class Body {
         return radius;
     }
 
+    public Color getColor() {
+        return color;
+    }
+    
     public String getDescription() {
         return description;
     }

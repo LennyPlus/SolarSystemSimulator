@@ -42,9 +42,9 @@ public class SimulationView {
             double x = body.getPosition().getX() * distanceScale;
             double y = body.getPosition().getY() * distanceScale;
 
-            double radius = Math.max(body.getRadius() * planetScaleFactor,0.5);
+            double radius = Math.clamp(body.getRadius() * planetScaleFactor, 0.5, 5.0);
 
-            gc.setFill(Color.WHITE);
+            gc.setFill(body.getColor());
             gc.fillOval(x - radius, y - radius, radius * 2, radius * 2);
             
         }
