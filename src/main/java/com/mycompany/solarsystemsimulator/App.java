@@ -14,11 +14,11 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-    private static Stage mainStage;
+    private static Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws IOException {
-        mainStage = stage;
+        primaryStage = stage;
         scene = new Scene(loadFXML("primary"));
         stage.setTitle("Solar System Simulator");
         stage.setScene(scene);
@@ -26,12 +26,12 @@ public class App extends Application {
     }
 
     static void closeWindow() {
-        mainStage.close();
+        primaryStage.close();
     }
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
-        mainStage.sizeToScene();
+        primaryStage.sizeToScene();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

@@ -1,0 +1,23 @@
+/* Simple space styling shared by both screens. */
+.root {
+    -fx-font-family: "Arial";
+    -fx-background-image: url("starfield.png");
+    -fx-background-repeat: repeat;
+}
+
+.label {
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-text-fill: #101b2e;
+    -fx-padding: 10 18 10 18;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #68b9ef;
+    -fx-border-width: 2;
+}
+
+.button:hover {
+    -fx-border-color: #d4efff;
+}
