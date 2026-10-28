@@ -32,6 +32,7 @@ public class App extends Application {
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
         primaryStage.sizeToScene();
+        scene.getRoot().requestFocus();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
