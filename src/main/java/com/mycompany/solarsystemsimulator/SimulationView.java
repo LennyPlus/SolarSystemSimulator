@@ -25,12 +25,20 @@ public class SimulationView {
     
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        gc.setTransform(0, 0, 0, 0, 0, 0);
+        
+        // Saves the currnt transform
+        gc.save();
+        // Center the canvas
+        gc.translate(canvas.getWidth() / 2, canvas.getHeight() / 2);
+        System.out.println(gc.getTransform());
         for (int i = 0; i < simulation.getBodies().size(); i++) {
             Body body = simulation.getBodies().get(i);
             gc.setFill(Color.BLACK);
             gc.fillOval(body.getPosition().getX(), body.getPosition().getY(), 10, 10 );
         }
+        
+        // Restores the saved transform
+        gc.restore();
     }
     
 }

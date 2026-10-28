@@ -19,7 +19,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         mainStage = stage;
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("primary"));
         stage.setTitle("Solar System Simulator");
         stage.setScene(scene);
         stage.show();
@@ -31,6 +31,7 @@ public class App extends Application {
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
+        mainStage.sizeToScene();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
