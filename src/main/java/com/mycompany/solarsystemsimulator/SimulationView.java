@@ -6,24 +6,30 @@ package com.mycompany.solarsystemsimulator;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 /**
  *
  * @author 2551365
  */
-public class SimulationView extends Canvas{
-    private GraphicsContext gc = getGraphicsContext2D();
+public class SimulationView {
+    private Canvas canvas;
+    private GraphicsContext gc;
     private Simulation simulation;
 
-    public SimulationView(Simulation simulation, double d, double d1) {
-        super(d, d1);
+    public SimulationView(Canvas canvas, Simulation simulation) {
+        this.canvas = canvas;
+        this.gc = canvas.getGraphicsContext2D();
         this.simulation = simulation;
     }
     
     public void render() {
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        gc.setTransform(0, 0, 0, 0, 0, 0);
         for (int i = 0; i < simulation.getBodies().size(); i++) {
             Body body = simulation.getBodies().get(i);
-            gc.fillOval(10, 10, body.getPosition().getX(), body.getPosition().getY());
+            gc.setFill(Color.BLACK);
+            gc.fillOval(body.getPosition().getX(), body.getPosition().getY(), 10, 10 );
         }
     }
     

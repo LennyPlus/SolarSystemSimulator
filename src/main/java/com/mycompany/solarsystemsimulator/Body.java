@@ -14,7 +14,6 @@ public class Body {
     private String name;
     private double mass; // Kilograms (kg).
     private double radius; // Kilometres (km).
-    private double distanceFromSun; // Kilometres (km), measured from the Sun's centre.
     private String description;
     
     // Motion vectors
@@ -22,12 +21,18 @@ public class Body {
     private Point3D velocity;
     private Point3D acceleration;
 
-    public Body(String name, double mass, double radius,
-            double distanceFromSun, String description) {
+    public Body(String name, double mass, Point3D position, Point3D velocity, Point3D acceleration) {
+        this.name = name;
+        this.mass = mass;
+        this.position = position;
+        this.velocity = velocity;
+        this.acceleration = acceleration;
+    }
+
+    public Body(String name, double mass, double radius, String description) {
         this.name = name;
         this.mass = mass;
         this.radius = radius;
-        this.distanceFromSun = distanceFromSun;
         this.description = description;
     }
 
@@ -53,10 +58,6 @@ public class Body {
 
     public double getRadius() {
         return radius;
-    }
-
-    public double getDistanceFromSun() {
-        return distanceFromSun;
     }
 
     public String getDescription() {
