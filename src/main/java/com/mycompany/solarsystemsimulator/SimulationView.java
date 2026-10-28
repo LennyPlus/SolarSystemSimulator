@@ -16,8 +16,8 @@ public class SimulationView {
     private Canvas canvas;
     private GraphicsContext gc;
     private Simulation simulation;
-    private double scale = 1; //10 AU = 1 pixel
-    private double planetScaleFactor = 10000;
+    private double distanceScale = 20; //50 pixels = 1 AU
+    private double planetScaleFactor = 1000;
 
     public SimulationView(Canvas canvas, Simulation simulation) {
         this.canvas = canvas;
@@ -38,12 +38,17 @@ public class SimulationView {
         
         for (int i = 0; i < simulation.getBodies().size(); i++) {
             Body body = simulation.getBodies().get(i);
-            System.out.println(body.getRadius());
+            
+            double x = body.getPosition().getX() * distanceScale;
+            double y = body.getPosition().getY() * distanceScale;
+
+            double radius = Math.max(body.getRadius() * planetScaleFactor,0.5);
+
             gc.setFill(Color.WHITE);
-            gc.fillOval(body.getPosition().getX(), body.getPosition().getY(), body.getRadius() * planetScaleFactor, body.getRadius() * planetScaleFactor);
+            gc.fillOval(x - radius, y - radius, radius * 2, radius * 2);
+            
         }
         
-        gc.scale(scale, scale);
         // Restores the saved transform
         gc.restore();
     }
