@@ -16,7 +16,8 @@ public class SimulationView {
     private Canvas canvas;
     private GraphicsContext gc;
     private Simulation simulation;
-    private double scale = 10; //5 AU = 1 pixel
+    private double scale = 1; //10 AU = 1 pixel
+    private double planetScaleFactor = 10000;
 
     public SimulationView(Canvas canvas, Simulation simulation) {
         this.canvas = canvas;
@@ -26,20 +27,23 @@ public class SimulationView {
     
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        
         
         // Saves the currnt transform
         gc.save();
         // Center the canvas and scales everything
         gc.translate(canvas.getWidth() / 2, canvas.getHeight() / 2);
-        gc.scale(scale, scale);
         
-        System.out.println(gc.getTransform());
+        
         for (int i = 0; i < simulation.getBodies().size(); i++) {
             Body body = simulation.getBodies().get(i);
-            gc.setFill(Color.BLACK);
-            gc.fillOval(body.getPosition().getX(), body.getPosition().getY(), 5 / scale, 5 / scale);
+            System.out.println(body.getRadius());
+            gc.setFill(Color.WHITE);
+            gc.fillOval(body.getPosition().getX(), body.getPosition().getY(), body.getRadius() * planetScaleFactor, body.getRadius() * planetScaleFactor);
         }
         
+        gc.scale(scale, scale);
         // Restores the saved transform
         gc.restore();
     }
