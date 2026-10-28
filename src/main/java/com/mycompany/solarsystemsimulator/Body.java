@@ -21,12 +21,11 @@ public class Body {
     private Point3D velocity;
     private Point3D acceleration;
 
-    public Body(String name, double mass, Point3D position, Point3D velocity, Point3D acceleration) {
+    public Body(String name, double mass, Point3D position, Point3D velocity) {
         this.name = name;
         this.mass = mass;
         this.position = position;
         this.velocity = velocity;
-        this.acceleration = acceleration;
     }
 
     public Body(String name, double mass, double radius, String description) {

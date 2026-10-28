@@ -15,7 +15,8 @@ public class Simulation {
     private double timestep;
     private List<Body> bodies;
 //    private static double G = 6.674 * Math.pow(10, -11);
-    private static double G = 4;
+    // Converted from the G value on wikipedia
+    private static double G = 2.9591220828559E-4;
 
     public Simulation(double timestep, List<Body> bodies) {
         this.timestep = timestep;

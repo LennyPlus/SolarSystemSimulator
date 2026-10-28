@@ -41,12 +41,21 @@ public class SimulationController implements Initializable {
         
         
         List<Body> bodies = new ArrayList<>();
-        bodies.add(new Body("test1", 10, new Point3D(100,100,0), new Point3D(0, -0.5, 0), Point3D.ZERO));
-        bodies.add(new Body("test1", 10, new Point3D(20, 20, 0), new Point3D(0, 0.5, 0), Point3D.ZERO));
+//        bodies.add(new Body("test1", 10, new Point3D(100,100,0), new Point3D(0, -0.5, 0)));
+//        bodies.add(new Body("test1", 10, new Point3D(20, 20, 0), new Point3D(0, 0.5, 0)));
 //        bodies.add(new Body("test1", 10, new Point3D(-20, -20, 0), new Point3D(0, 0, 0), Point3D.ZERO));
+        bodies.add(SolarSystemData.SUN);
+        bodies.add(SolarSystemData.MERCURY);
+        bodies.add(SolarSystemData.VENUS);
+        bodies.add(SolarSystemData.EARTH);
+        bodies.add(SolarSystemData.MARS);
+        bodies.add(SolarSystemData.JUPITER);
+        bodies.add(SolarSystemData.SATURN);
+        bodies.add(SolarSystemData.URANUS);
+        bodies.add(SolarSystemData.NEPTUNE);
         
         
-        Simulation simulation = new Simulation(1, bodies);
+        Simulation simulation = new Simulation(0.1, bodies);
         SimulationView simulationView = new SimulationView(simulationCanvas, simulation);
         
         

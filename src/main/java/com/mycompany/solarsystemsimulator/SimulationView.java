@@ -16,6 +16,7 @@ public class SimulationView {
     private Canvas canvas;
     private GraphicsContext gc;
     private Simulation simulation;
+    private double scale = 10; //5 AU = 1 pixel
 
     public SimulationView(Canvas canvas, Simulation simulation) {
         this.canvas = canvas;
@@ -28,13 +29,15 @@ public class SimulationView {
         
         // Saves the currnt transform
         gc.save();
-        // Center the canvas
+        // Center the canvas and scales everything
         gc.translate(canvas.getWidth() / 2, canvas.getHeight() / 2);
+        gc.scale(scale, scale);
+        
         System.out.println(gc.getTransform());
         for (int i = 0; i < simulation.getBodies().size(); i++) {
             Body body = simulation.getBodies().get(i);
             gc.setFill(Color.BLACK);
-            gc.fillOval(body.getPosition().getX(), body.getPosition().getY(), 10, 10 );
+            gc.fillOval(body.getPosition().getX(), body.getPosition().getY(), 5 / scale, 5 / scale);
         }
         
         // Restores the saved transform
