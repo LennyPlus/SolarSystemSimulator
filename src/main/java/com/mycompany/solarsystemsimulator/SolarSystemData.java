@@ -22,7 +22,7 @@ public class SolarSystemData {
             new Point3D(5.811505289676687E-01, 4.304661260502406E-01, -2.761630281953054E-02),
             new Point3D(-1.210067509638803E-02, 1.616688578979737E-02, 9.203640128548601E-04));
     
-    public static final Body EARTH = new Body("Earth", 0.0000029861, kmToAU(6371), Color.ALICEBLUE,
+    public static final Body EARTH = new Body("Earth", 0.0000029861, kmToAU(6371), Color.BLUE,
             new Point3D(8.217896106478431E-01, 5.586924462436930E-01, -4.184891455262764E-05),
             new Point3D(-9.945752095816504E-03, 1.415903687034667E-02, -7.952403014471578E-07));
     
@@ -42,7 +42,7 @@ public class SolarSystemData {
             new Point3D(8.835333962643675E+00, 1.731205155817433E+01, -5.026430549691411E-02),
             new Point3D(-3.538037196545882E-03, 1.602096142851125E-03, 5.189560992457683E-05));
     
-    public static final Body NEPTUNE = new Body("Neptune", 0.0009490625, kmToAU(24622), Color.BLUE,
+    public static final Body NEPTUNE = new Body("Neptune", 0.0009490625, kmToAU(24622), Color.AQUA,
             new Point3D(2.983282788330961E+01, 1.465245680617243E+00, -7.176643755423113E-01),
             new Point3D(-1.803391324406298E-04, 3.150842160711341E-03, -6.096940839377589E-05));
     

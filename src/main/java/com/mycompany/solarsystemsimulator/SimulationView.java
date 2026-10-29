@@ -16,7 +16,7 @@ public class SimulationView {
     private Canvas canvas;
     private GraphicsContext gc;
     private Simulation simulation;
-    private double distanceScale = 200; //50 pixels = 1 AU
+    private double distanceScale = 100; //50 pixels = 1 AU
     private double planetScaleFactor = 100000;
     
     // Used for camera translation

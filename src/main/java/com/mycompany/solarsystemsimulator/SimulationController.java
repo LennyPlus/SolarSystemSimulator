@@ -7,7 +7,9 @@ package com.mycompany.solarsystemsimulator;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.animation.AnimationTimer;
@@ -39,16 +41,36 @@ public class SimulationController implements Initializable {
     Simulation simulation;
     SimulationView simulationView;
     
+    private final Map<KeyCode, Boolean> keys = new HashMap<>();
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        keys.put(KeyCode.W, false);
+        keys.put(KeyCode.S, false);
+        keys.put(KeyCode.D, false);
+        keys.put(KeyCode.A, false);
+        
+        simulationPane.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    keys.put(event.getCode(), true);
+                });
+                
+                newScene.setOnKeyReleased(event -> {
+                    keys.put(event.getCode(), false);
+                });
+            }
+        });
+        
+        
         // Make the canvas the same size as its parent
         simulationCanvas.widthProperty().bind(simulationPane.widthProperty());
         simulationCanvas.heightProperty().bind(simulationPane.heightProperty());
         
-        
+        // Add the planets
         List<Body> bodies = new ArrayList<>();
         bodies.add(SolarSystemData.SUN);
         bodies.add(SolarSystemData.MERCURY);
@@ -69,6 +91,16 @@ public class SimulationController implements Initializable {
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long l) {
+                if (keys.get(KeyCode.W)) {
+                    simulationView.moveCameraBy(0, 10);
+                } else if (keys.get(KeyCode.S)) {
+                    simulationView.moveCameraBy(0, -10);
+                } else if (keys.get(KeyCode.D)) {
+                    simulationView.moveCameraBy(-10, 0);
+                } else if (keys.get(KeyCode.A)) {
+                    simulationView.moveCameraBy(10, 0);
+                }
+                
                 simulation.update();
                 simulationView.render();
             }
@@ -118,16 +150,4 @@ public class SimulationController implements Initializable {
         simulationPane.requestFocus();
     }
     
-    @FXML
-    void onKeyPressed(KeyEvent event) {
-        if (event.getCode() == KeyCode.W) {
-            simulationView.moveCameraBy(0, -10);
-        } else if (event.getCode() == KeyCode.S) {
-            simulationView.moveCameraBy(0, 10);
-        } else if (event.getCode() == KeyCode.D) {
-            simulationView.moveCameraBy(10, 0);
-        } else if (event.getCode() == KeyCode.A) {
-            simulationView.moveCameraBy(-10, 0);
-        }
-    }
 }
