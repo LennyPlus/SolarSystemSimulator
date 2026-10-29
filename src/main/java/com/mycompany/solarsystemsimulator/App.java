@@ -10,6 +10,7 @@ import java.io.IOException;
 
 /**
  * JavaFX App
+ * https://github.com/LennyPlus/SolarSystemSimulator
  */
 public class App extends Application {
 
