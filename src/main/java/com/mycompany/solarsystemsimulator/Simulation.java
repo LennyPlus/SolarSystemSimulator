@@ -22,7 +22,6 @@ public class Simulation {
         this.bodies = bodies;
     }
     
-    
     public void update() {
         bodies.stream().forEach(body -> body.setAcceleration(Point3D.ZERO));
         

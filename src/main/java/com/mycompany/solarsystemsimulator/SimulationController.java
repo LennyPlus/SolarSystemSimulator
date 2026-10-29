@@ -20,7 +20,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 /**
@@ -81,7 +80,6 @@ public class SimulationController implements Initializable {
         bodies.add(SolarSystemData.SATURN);
         bodies.add(SolarSystemData.URANUS);
         bodies.add(SolarSystemData.NEPTUNE);
-        
         
         simulation = new Simulation(1, bodies);
         simulationView = new SimulationView(simulationCanvas, simulation);
