@@ -12,9 +12,8 @@ import javafx.geometry.Point3D;
  * @author 2551365
  */
 public class Simulation {
-    private double timestep;
+    private double timestep; // In days
     private List<Body> bodies;
-//    private static double G = 6.674 * Math.pow(10, -11);
     // Converted from the G value on wikipedia
     private static double G = 2.9591220828559E-4;
 

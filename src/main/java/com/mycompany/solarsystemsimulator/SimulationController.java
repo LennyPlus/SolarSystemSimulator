@@ -13,12 +13,12 @@ import java.util.ResourceBundle;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Point3D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 /**
@@ -30,19 +30,20 @@ public class SimulationController implements Initializable {
 
     @FXML
     private Canvas simulationCanvas;
-
+    
     @FXML
     private Pane simulationPane;
 
     private AnimationTimer animationTimer;
-
-
+    
+    Simulation simulation;
+    SimulationView simulationView;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("Initialized");
         // Make the canvas the same size as its parent
         simulationCanvas.widthProperty().bind(simulationPane.widthProperty());
         simulationCanvas.heightProperty().bind(simulationPane.heightProperty());
@@ -60,8 +61,8 @@ public class SimulationController implements Initializable {
         bodies.add(SolarSystemData.NEPTUNE);
         
         
-        Simulation simulation = new Simulation(1, bodies);
-        SimulationView simulationView = new SimulationView(simulationCanvas, simulation);
+        simulation = new Simulation(1, bodies);
+        simulationView = new SimulationView(simulationCanvas, simulation);
         
         
         // Updates and renders the simulation each frame
@@ -116,5 +117,17 @@ public class SimulationController implements Initializable {
         animationTimer.start();
         simulationPane.requestFocus();
     }
-
+    
+    @FXML
+    void onKeyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.W) {
+            simulationView.moveCameraBy(0, -10);
+        } else if (event.getCode() == KeyCode.S) {
+            simulationView.moveCameraBy(0, 10);
+        } else if (event.getCode() == KeyCode.D) {
+            simulationView.moveCameraBy(10, 0);
+        } else if (event.getCode() == KeyCode.A) {
+            simulationView.moveCameraBy(-10, 0);
+        }
+    }
 }
