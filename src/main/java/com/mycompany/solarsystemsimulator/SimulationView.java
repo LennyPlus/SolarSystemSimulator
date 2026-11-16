@@ -23,6 +23,10 @@ public class SimulationView {
     private double cameraX = 0;
     private double cameraY = 0;
     
+    private double zoomX = 1;
+    private double zoomY = 1;
+            
+    
     public SimulationView(Canvas canvas, Simulation simulation) {
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
@@ -38,7 +42,7 @@ public class SimulationView {
         gc.save();
         // Center the canvas and scales everything
         gc.translate(canvas.getWidth() / 2 + cameraX, canvas.getHeight() / 2 + cameraY);
-        
+        gc.scale(zoomX, zoomX);
         
         for (int i = 0; i < simulation.getBodies().size(); i++) {
             Body body = simulation.getBodies().get(i);
@@ -64,6 +68,24 @@ public class SimulationView {
     public void setCameraY(double cameraY) {
         this.cameraY = cameraY;
     }
+
+    public void setZoomX(double zoomX) {
+        this.zoomX = zoomX;
+    }
+
+    public void setZoomY(double zoomY) {
+        this.zoomY = zoomY;
+    }
+
+    public double getZoomX() {
+        return zoomX;
+    }
+
+    public double getZoomY() {
+        return zoomY;
+    }
+    
+    
     
     public void moveCameraBy(double x, double y) {
         setCameraX(cameraX + x);

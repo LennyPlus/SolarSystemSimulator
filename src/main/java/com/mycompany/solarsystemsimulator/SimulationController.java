@@ -99,6 +99,9 @@ public class SimulationController implements Initializable {
                     simulationView.moveCameraBy(10, 0);
                 }
                 
+//                
+                
+                
                 simulation.update();
                 simulationView.render();
             }
@@ -111,6 +114,15 @@ public class SimulationController implements Initializable {
                 event.consume();
                 pauseSimulation();
             }
+            
+            if (event.getCode() == KeyCode.UP) {
+                simulationView.setZoomX(simulationView.getZoomX() * 1.2);
+                simulationView.setZoomY(simulationView.getZoomY() * 1.2);
+            } else if (event.getCode() == KeyCode.DOWN) {
+                simulationView.setZoomX(simulationView.getZoomX() * 0.8);
+                simulationView.setZoomY(simulationView.getZoomY() * 0.8);
+            }
+            
         });
 
         animationTimer.start();
