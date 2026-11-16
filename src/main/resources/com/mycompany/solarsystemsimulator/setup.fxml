@@ -6,15 +6,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="setupBox" alignment="CENTER" prefHeight="430.0" prefWidth="500.0" spacing="12.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.solarsystemsimulator.SetupController">
+<VBox fx:id="setupBox" alignment="CENTER" prefHeight="600.0" prefWidth="900.0" spacing="20.0" style="-fx-background-color: #101010;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.solarsystemsimulator.SetupController">
    <children>
-      <Label text="Simulation Setup" />
-      <TextField fx:id="timestepField" promptText="Timestep (days)" />
-      <TextField fx:id="lengthField" promptText="Simulation length (days)" />
-      <Button mnemonicParsing="false" onAction="#startSimulation" text="Start Simulation" />
-      <Button mnemonicParsing="false" onAction="#backToMenu" text="Back to Main Menu" />
+      <Label style="-fx-text-fill: white; -fx-font-size: 28px;" text="Simulation Setup" />
+      <TextField fx:id="timestepField" promptText="Timestep (days)" style="-fx-font-size: 16px;" />
+      <TextField fx:id="lengthField" promptText="Simulation length (days)" style="-fx-font-size: 16px;" />
+      <Button mnemonicParsing="false" onAction="#startSimulation" prefWidth="220.0" style="-fx-font-size: 16px; -fx-background-color: #dce7f5;" text="Start Simulation" />
+      <Button mnemonicParsing="false" onAction="#backToMenu" prefWidth="220.0" style="-fx-font-size: 16px; -fx-background-color: #dce7f5;" text="Back to Main Menu" />
    </children>
    <padding>
-      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+      <Insets bottom="30.0" left="260.0" right="260.0" top="30.0" />
    </padding>
 </VBox>
