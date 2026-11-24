@@ -46,7 +46,8 @@ public class SolarSystemData {
     
     public static final Body URANUS = new Body("Uranus", 0.00004366, kmToAU(25362), Color.CYAN,
             new Point3D(8.835333962643675E+00, 1.731205155817433E+01, -5.026430549691411E-02),
-            new Point3D(-3.538037196545882E-03, 1.602096142851125E-03, 5.189560992457683E-05));
+            new Point3D(-3.538037196545882E-03, 1.602096142851125E-03, 5.189560992457683E-05),
+            "An ice giant that rotates on its side. Methane in its atmosphere helps give it a blue-green colour.");
     
     public static final Body NEPTUNE = new Body("Neptune", 0.00005150, kmToAU(24622), Color.AQUA,
             new Point3D(2.983282788330961E+01, 1.465245680617243E+00, -7.176643755423113E-01),
