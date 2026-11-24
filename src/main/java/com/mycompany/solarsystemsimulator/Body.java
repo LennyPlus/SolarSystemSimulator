@@ -13,8 +13,8 @@ import javafx.scene.paint.Color;
  */
 public class Body {
     private String name;
-    private double mass; // Kilograms (kg).
-    private double radius; // Kilometres (km).
+    private double mass; // Solar masses for simulated bodies.
+    private double radius; // Astronomical units for simulated bodies.
     private Color color;
     private String description;
     
@@ -24,12 +24,18 @@ public class Body {
     private Point3D acceleration;
 
     public Body(String name, double mass, double radius, Color color, Point3D position, Point3D velocity) {
+        this(name, mass, radius, color, position, velocity, null);
+    }
+
+    public Body(String name, double mass, double radius, Color color, Point3D position, Point3D velocity,
+            String description) {
         this.name = name;
         this.mass = mass;
         this.radius = radius;
         this.color = color;
         this.position = position;
         this.velocity = velocity;
+        this.description = description;
     }
 
     public Body(String name, double mass, double radius, String description) {
