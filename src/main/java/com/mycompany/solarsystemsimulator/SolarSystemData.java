@@ -24,7 +24,8 @@ public class SolarSystemData {
     
     public static final Body EARTH = new Body("Earth", 0.0000029861, kmToAU(6371), Color.BLUE,
             new Point3D(8.217896106478431E-01, 5.586924462436930E-01, -4.184891455262764E-05),
-            new Point3D(-9.945752095816504E-03, 1.415903687034667E-02, -7.952403014471578E-07));
+            new Point3D(-9.945752095816504E-03, 1.415903687034667E-02, -7.952403014471578E-07),
+            "Our home planet, the third planet from the Sun. Liquid water covers most of its surface.");
     
     public static final Body MARS = new Body("Mars", 3.20855E-7, kmToAU(3389.5), Color.ROSYBROWN,
             new Point3D(-2.352021638316075E-01, 1.571997544521290E+00, 3.871045960235844E-02),
