@@ -1,5 +1,6 @@
 package com.mycompany.solarsystemsimulator;
 
+import java.util.List;
 import javafx.geometry.Point3D;
 import javafx.scene.paint.Color;
 
@@ -55,6 +56,13 @@ public class SolarSystemData {
             "The farthest planet from the Sun. This ice giant has the fastest winds in the solar system.");
     
     
+    static List<Body> newSimulationBodies() {
+        return List.of(SUN, MERCURY, VENUS, EARTH, MARS, JUPITER, SATURN, URANUS, NEPTUNE).stream()
+                .map(body -> new Body(body.getName(), body.getMass(), body.getRadius(), body.getColor(),
+                        body.getPosition(), body.getVelocity(), body.getDescription()))
+                .toList();
+    }
+
     public static double kmToAU(double km) {
         return km * 6.684587E-9;
     }

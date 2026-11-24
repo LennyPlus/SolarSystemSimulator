@@ -76,14 +76,7 @@ public class SimulationController implements Initializable {
         simulationCanvas.widthProperty().bind(simulationPane.widthProperty());
         simulationCanvas.heightProperty().bind(simulationPane.heightProperty());
         
-        // Start each run with fresh bodies so the initial data stays intact.
-        List<Body> bodies = List.of(SolarSystemData.SUN, SolarSystemData.MERCURY, SolarSystemData.VENUS,
-                SolarSystemData.EARTH, SolarSystemData.MARS, SolarSystemData.JUPITER, SolarSystemData.SATURN,
-                SolarSystemData.URANUS, SolarSystemData.NEPTUNE).stream()
-                .map(body -> new Body(body.getName(), body.getMass(), body.getRadius(), body.getColor(),
-                        body.getPosition(), body.getVelocity(), body.getDescription()))
-                .toList();
-
+        List<Body> bodies = SolarSystemData.newSimulationBodies();
         simulation = new Simulation(1, bodies);
         simulationView = new SimulationView(simulationCanvas, simulation);
 
