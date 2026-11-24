@@ -34,7 +34,7 @@ public class SolarSystemData {
             new Point3D(-3.643858817382849E+00, 3.869622673542852E+00, 6.545204133720292E-02),
             new Point3D(-5.586032451617269E-03, -4.825359970632274E-03, 1.450368585991290E-04));
     
-    public static final Body SATURN = new Body("Saturn", 0.0009490625, kmToAU(58232), Color.BISQUE,
+    public static final Body SATURN = new Body("Saturn", 0.0002858, kmToAU(58232), Color.BISQUE,
             new Point3D(9.221381096669472E+00, 1.914046918740637E+00, -4.004026015314515E-01),
             new Point3D(-1.443758160331379E-03, 5.448117880473655E-03, -3.737486435801490E-05));
     
