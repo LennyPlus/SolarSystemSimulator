@@ -18,6 +18,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 
@@ -33,6 +35,12 @@ public class SimulationController implements Initializable {
     
     @FXML
     private Pane simulationPane;
+
+    @FXML
+    private ChoiceBox<String> planetSelector;
+
+    @FXML
+    private Label planetFacts;
 
     private AnimationTimer animationTimer;
     
@@ -78,6 +86,14 @@ public class SimulationController implements Initializable {
 
         simulation = new Simulation(1, bodies);
         simulationView = new SimulationView(simulationCanvas, simulation);
+
+        List<Body> planets = bodies.stream().filter(body -> body.getDescription() != null).toList();
+        planetSelector.getItems().setAll(planets.stream().map(Body::getName).toList());
+        planetSelector.getSelectionModel().selectedIndexProperty().addListener((obs, previous, selected) -> {
+            int index = selected.intValue();
+            planetFacts.setText(index < 0 ? "" : planets.get(index).getDescription());
+        });
+        planetSelector.getSelectionModel().selectFirst();
         
         
         // Updates and renders the simulation each frame
