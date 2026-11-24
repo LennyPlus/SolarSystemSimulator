@@ -38,7 +38,7 @@ public class SolarSystemData {
             new Point3D(9.221381096669472E+00, 1.914046918740637E+00, -4.004026015314515E-01),
             new Point3D(-1.443758160331379E-03, 5.448117880473655E-03, -3.737486435801490E-05));
     
-    public static final Body URANUS = new Body("Uranus", 0.0009490625, kmToAU(25362), Color.CYAN,
+    public static final Body URANUS = new Body("Uranus", 0.00004366, kmToAU(25362), Color.CYAN,
             new Point3D(8.835333962643675E+00, 1.731205155817433E+01, -5.026430549691411E-02),
             new Point3D(-3.538037196545882E-03, 1.602096142851125E-03, 5.189560992457683E-05));
     
