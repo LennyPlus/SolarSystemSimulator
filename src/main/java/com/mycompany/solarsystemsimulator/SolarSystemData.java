@@ -31,7 +31,8 @@ public class SolarSystemData {
     
     public static final Body MARS = new Body("Mars", 3.20855E-7, kmToAU(3389.5), Color.ROSYBROWN,
             new Point3D(-2.352021638316075E-01, 1.571997544521290E+00, 3.871045960235844E-02),
-            new Point3D(-1.330964221868380E-02, -8.823242552545569E-04, 3.078603636747692E-04));
+            new Point3D(-1.330964221868380E-02, -8.823242552545569E-04, 3.078603636747692E-04),
+            "The fourth planet from the Sun. Iron oxide gives its surface a reddish colour.");
     
     public static final Body JUPITER = new Body("Jupiter", 0.0009490625, kmToAU(69886), Color.ORANGE,
             new Point3D(-3.643858817382849E+00, 3.869622673542852E+00, 6.545204133720292E-02),
