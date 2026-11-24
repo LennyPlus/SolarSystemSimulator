@@ -16,7 +16,8 @@ public class SolarSystemData {
     
     public static final Body MERCURY = new Body("Mercury", 1.65055E-7, kmToAU(2439.4), Color.GRAY,
             new Point3D(3.524147667938602E-01, 6.621305725661851E-03, -3.178105286088669E-02),
-            new Point3D(-5.962592463435759E-03, 2.938667583568012E-02, 2.948470215803164E-03));
+            new Point3D(-5.962592463435759E-03, 2.938667583568012E-02, 2.948470215803164E-03),
+            "The smallest planet and the closest to the Sun. It takes just 88 Earth days to complete an orbit.");
     
     public static final Body VENUS = new Body("Venus", 0.0000024337, kmToAU(6051.8), Color.BEIGE,
             new Point3D(5.811505289676687E-01, 4.304661260502406E-01, -2.761630281953054E-02),
