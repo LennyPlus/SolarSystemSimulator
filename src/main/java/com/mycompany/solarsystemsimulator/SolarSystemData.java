@@ -51,7 +51,8 @@ public class SolarSystemData {
     
     public static final Body NEPTUNE = new Body("Neptune", 0.00005150, kmToAU(24622), Color.AQUA,
             new Point3D(2.983282788330961E+01, 1.465245680617243E+00, -7.176643755423113E-01),
-            new Point3D(-1.803391324406298E-04, 3.150842160711341E-03, -6.096940839377589E-05));
+            new Point3D(-1.803391324406298E-04, 3.150842160711341E-03, -6.096940839377589E-05),
+            "The farthest planet from the Sun. This ice giant has the fastest winds in the solar system.");
     
     
     public static double kmToAU(double km) {
