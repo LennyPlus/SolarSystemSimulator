@@ -21,6 +21,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 
 /**
@@ -87,6 +88,14 @@ public class SimulationController implements Initializable {
             planetFacts.setText(index < 0 ? "" : planets.get(index).getDescription());
         });
         planetSelector.getSelectionModel().selectFirst();
+        simulationCanvas.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY && event.isStillSincePress()) {
+                Body planet = simulationView.findPlanetAt(event.getX(), event.getY());
+                if (planet != null) {
+                    planetSelector.getSelectionModel().select(planets.indexOf(planet));
+                }
+            }
+        });
         
         
         // Updates and renders the simulation each frame
