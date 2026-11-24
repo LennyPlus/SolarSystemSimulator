@@ -21,7 +21,8 @@ public class SolarSystemData {
     
     public static final Body VENUS = new Body("Venus", 0.0000024337, kmToAU(6051.8), Color.BEIGE,
             new Point3D(5.811505289676687E-01, 4.304661260502406E-01, -2.761630281953054E-02),
-            new Point3D(-1.210067509638803E-02, 1.616688578979737E-02, 9.203640128548601E-04));
+            new Point3D(-1.210067509638803E-02, 1.616688578979737E-02, 9.203640128548601E-04),
+            "The second planet from the Sun. Its thick atmosphere traps heat, making it the hottest planet.");
     
     public static final Body EARTH = new Body("Earth", 0.0000029861, kmToAU(6371), Color.BLUE,
             new Point3D(8.217896106478431E-01, 5.586924462436930E-01, -4.184891455262764E-05),
