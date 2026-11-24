@@ -6,7 +6,6 @@ package com.mycompany.solarsystemsimulator;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,18 +68,14 @@ public class SimulationController implements Initializable {
         simulationCanvas.widthProperty().bind(simulationPane.widthProperty());
         simulationCanvas.heightProperty().bind(simulationPane.heightProperty());
         
-        // Add the planets
-        List<Body> bodies = new ArrayList<>();
-        bodies.add(SolarSystemData.SUN);
-        bodies.add(SolarSystemData.MERCURY);
-        bodies.add(SolarSystemData.VENUS);
-        bodies.add(SolarSystemData.EARTH);
-        bodies.add(SolarSystemData.MARS);
-        bodies.add(SolarSystemData.JUPITER);
-        bodies.add(SolarSystemData.SATURN);
-        bodies.add(SolarSystemData.URANUS);
-        bodies.add(SolarSystemData.NEPTUNE);
-        
+        // Start each run with fresh bodies so the initial data stays intact.
+        List<Body> bodies = List.of(SolarSystemData.SUN, SolarSystemData.MERCURY, SolarSystemData.VENUS,
+                SolarSystemData.EARTH, SolarSystemData.MARS, SolarSystemData.JUPITER, SolarSystemData.SATURN,
+                SolarSystemData.URANUS, SolarSystemData.NEPTUNE).stream()
+                .map(body -> new Body(body.getName(), body.getMass(), body.getRadius(), body.getColor(),
+                        body.getPosition(), body.getVelocity(), body.getDescription()))
+                .toList();
+
         simulation = new Simulation(1, bodies);
         simulationView = new SimulationView(simulationCanvas, simulation);
         
