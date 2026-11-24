@@ -36,7 +36,8 @@ public class SolarSystemData {
     
     public static final Body JUPITER = new Body("Jupiter", 0.0009490625, kmToAU(69886), Color.ORANGE,
             new Point3D(-3.643858817382849E+00, 3.869622673542852E+00, 6.545204133720292E-02),
-            new Point3D(-5.586032451617269E-03, -4.825359970632274E-03, 1.450368585991290E-04));
+            new Point3D(-5.586032451617269E-03, -4.825359970632274E-03, 1.450368585991290E-04),
+            "The largest planet in the solar system. Its Great Red Spot is a giant storm.");
     
     public static final Body SATURN = new Body("Saturn", 0.0002858, kmToAU(58232), Color.BISQUE,
             new Point3D(9.221381096669472E+00, 1.914046918740637E+00, -4.004026015314515E-01),
