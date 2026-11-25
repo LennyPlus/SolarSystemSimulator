@@ -42,6 +42,7 @@
          </center>
       </BorderPane>
       <VBox layoutX="14.0" layoutY="50.0" prefWidth="260.0" spacing="6.0" style="-fx-background-color: -fx-background; -fx-background-radius: 6; -fx-padding: 10;">
+         <Label fx:id="simulationTimeLabel" text="Day: 0" />
          <Label text="Planet facts" />
          <ChoiceBox fx:id="planetSelector" accessibleText="Select a planet" />
          <Label fx:id="planetFacts" wrapText="true" />
