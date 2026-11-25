@@ -10,7 +10,7 @@
       <Label style="-fx-text-fill: white; -fx-font-size: 28px;" text="Solar System Simulator" />
       <Button fx:id="newSimulationButton" onAction="#switchToSecondary" prefWidth="200.0" style="-fx-font-size: 16px; -fx-background-color: #dce7f5;" text="New Simulation" />
       <Button fx:id="loadSimulationButton" onAction="#loadSimulationButtonPressed" prefWidth="200.0" style="-fx-font-size: 16px; -fx-background-color: #dce7f5;" text="Load Simulation" />
-      <Button fx:id="creditsButton" onAction="#creditsButtonPressed" prefWidth="200.0" style="-fx-font-size: 16px; -fx-background-color: #dce7f5;" text="Credits" />
+      <Button fx:id="creditsButton" onAction="#creditsButtonPressed" prefWidth="200.0" style="-fx-font-size: 16px; -fx-background-color: #dce7f5;" text="How to Use" />
       <Button fx:id="quitButton" onAction="#quitButtonPressed" prefWidth="200.0" style="-fx-font-size: 16px; -fx-background-color: #dce7f5;" text="Quit" />
    </children>
    <padding>
