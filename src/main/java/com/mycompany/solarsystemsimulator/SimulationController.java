@@ -195,7 +195,7 @@ public class SimulationController implements Initializable {
     //ActionEvents for the menu items
     @FXML
     void onMenuItemExitToMainMenu(ActionEvent event) throws IOException {
-        System.out.println("MenuItemClosePressed");
+        animationTimer.stop();
         App.setRoot("primary");
     }
     
