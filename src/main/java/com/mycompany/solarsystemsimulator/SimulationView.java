@@ -4,6 +4,8 @@
  */
 package com.mycompany.solarsystemsimulator;
 
+import java.util.List;
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -13,11 +15,13 @@ import javafx.scene.paint.Color;
  * @author 2551365
  */
 public class SimulationView {
+    private static final double MIN_CLICK_RADIUS = 6; // Pixels
+
     private Canvas canvas;
     private GraphicsContext gc;
     private Simulation simulation;
-    private double distanceScale = 100; //50 pixels = 1 AU
-    private double planetScaleFactor = 100000;
+    private static final double DISTANCE_SCALE = 100; // Pixels per AU
+    private static final double PLANET_SCALE_FACTOR = 100000;
     
     // Used for camera translation
     private double cameraX = 0;
@@ -41,24 +45,62 @@ public class SimulationView {
         // Saves the currnt transform
         gc.save();
         // Center the canvas and scales everything
-        gc.translate(canvas.getWidth() / 2 + cameraX, canvas.getHeight() / 2 + cameraY);
-        gc.scale(zoomX, zoomX);
+        gc.translate(screenOriginX(), screenOriginY());
+        gc.scale(zoomX, zoomY);
         
-        for (int i = 0; i < simulation.getBodies().size(); i++) {
-            Body body = simulation.getBodies().get(i);
-            
-            double x = body.getPosition().getX() * distanceScale;
-            double y = body.getPosition().getY() * distanceScale;
-            
-            double radius = Math.max(body.getRadius() * planetScaleFactor, 0.5);
-            radius = Math.min(radius, 5);
-
+        for (Body body : simulation.getBodies()) {
+            Point2D center = scaledPosition(body);
+            double radius = drawRadius(body);
             gc.setFill(body.getColor());
-            gc.fillOval(x - radius, y - radius, radius * 2, radius * 2);
+            gc.fillOval(center.getX() - radius, center.getY() - radius, radius * 2, radius * 2);
         }
-        
+
         // Restores the saved transform
         gc.restore();
+    }
+
+    Body findPlanetAt(double canvasX, double canvasY) {
+        return findPlanetAt(simulation.getBodies(), new Point2D(canvasX, canvasY),
+                new Point2D(screenOriginX(), screenOriginY()), zoomX, zoomY);
+    }
+
+    static Body findPlanetAt(List<Body> bodies, Point2D click, Point2D origin, double zoomX, double zoomY) {
+        Body closest = null;
+        double closestDistance = Double.POSITIVE_INFINITY;
+        for (Body body : bodies) {
+            if (body.getDescription() == null) {
+                continue;
+            }
+
+            Point2D center = scaledPosition(body);
+            double dx = click.getX() - (origin.getX() + center.getX() * zoomX);
+            double dy = click.getY() - (origin.getY() + center.getY() * zoomY);
+            double radius = drawRadius(body);
+            double radiusX = Math.max(radius * zoomX, MIN_CLICK_RADIUS);
+            double radiusY = Math.max(radius * zoomY, MIN_CLICK_RADIUS);
+            double distance = Math.hypot(dx, dy);
+            if (Math.hypot(dx / radiusX, dy / radiusY) <= 1 && distance <= closestDistance) {
+                closest = body;
+                closestDistance = distance;
+            }
+        }
+        return closest;
+    }
+
+    private double screenOriginX() {
+        return canvas.getWidth() / 2 + cameraX;
+    }
+
+    private double screenOriginY() {
+        return canvas.getHeight() / 2 + cameraY;
+    }
+
+    private static Point2D scaledPosition(Body body) {
+        return new Point2D(body.getPosition().getX() * DISTANCE_SCALE, body.getPosition().getY() * DISTANCE_SCALE);
+    }
+
+    private static double drawRadius(Body body) {
+        return Math.min(Math.max(body.getRadius() * PLANET_SCALE_FACTOR, 0.5), 5);
     }
 
     public void setCameraX(double cameraX) {

@@ -6,7 +6,6 @@ package com.mycompany.solarsystemsimulator;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +18,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 
 /**
@@ -34,6 +36,12 @@ public class SimulationController implements Initializable {
     
     @FXML
     private Pane simulationPane;
+
+    @FXML
+    private ChoiceBox<String> planetSelector;
+
+    @FXML
+    private Label planetFacts;
 
     private AnimationTimer animationTimer;
     
@@ -69,20 +77,25 @@ public class SimulationController implements Initializable {
         simulationCanvas.widthProperty().bind(simulationPane.widthProperty());
         simulationCanvas.heightProperty().bind(simulationPane.heightProperty());
         
-        // Add the planets
-        List<Body> bodies = new ArrayList<>();
-        bodies.add(SolarSystemData.SUN);
-        bodies.add(SolarSystemData.MERCURY);
-        bodies.add(SolarSystemData.VENUS);
-        bodies.add(SolarSystemData.EARTH);
-        bodies.add(SolarSystemData.MARS);
-        bodies.add(SolarSystemData.JUPITER);
-        bodies.add(SolarSystemData.SATURN);
-        bodies.add(SolarSystemData.URANUS);
-        bodies.add(SolarSystemData.NEPTUNE);
-        
+        List<Body> bodies = SolarSystemData.newSimulationBodies();
         simulation = new Simulation(1, bodies);
         simulationView = new SimulationView(simulationCanvas, simulation);
+
+        List<Body> planets = bodies.stream().filter(body -> body.getDescription() != null).toList();
+        planetSelector.getItems().setAll(planets.stream().map(Body::getName).toList());
+        planetSelector.getSelectionModel().selectedIndexProperty().addListener((obs, previous, selected) -> {
+            int index = selected.intValue();
+            planetFacts.setText(index < 0 ? "" : planets.get(index).getDescription());
+        });
+        planetSelector.getSelectionModel().selectFirst();
+        simulationCanvas.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY && event.isStillSincePress()) {
+                Body planet = simulationView.findPlanetAt(event.getX(), event.getY());
+                if (planet != null) {
+                    planetSelector.getSelectionModel().select(planets.indexOf(planet));
+                }
+            }
+        });
         
         
         // Updates and renders the simulation each frame

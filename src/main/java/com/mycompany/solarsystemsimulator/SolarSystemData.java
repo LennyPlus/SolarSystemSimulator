@@ -1,5 +1,6 @@
 package com.mycompany.solarsystemsimulator;
 
+import java.util.List;
 import javafx.geometry.Point3D;
 import javafx.scene.paint.Color;
 
@@ -16,37 +17,52 @@ public class SolarSystemData {
     
     public static final Body MERCURY = new Body("Mercury", 1.65055E-7, kmToAU(2439.4), Color.GRAY,
             new Point3D(3.524147667938602E-01, 6.621305725661851E-03, -3.178105286088669E-02),
-            new Point3D(-5.962592463435759E-03, 2.938667583568012E-02, 2.948470215803164E-03));
+            new Point3D(-5.962592463435759E-03, 2.938667583568012E-02, 2.948470215803164E-03),
+            "The smallest planet and the closest to the Sun. It takes just 88 Earth days to complete an orbit.");
     
     public static final Body VENUS = new Body("Venus", 0.0000024337, kmToAU(6051.8), Color.BEIGE,
             new Point3D(5.811505289676687E-01, 4.304661260502406E-01, -2.761630281953054E-02),
-            new Point3D(-1.210067509638803E-02, 1.616688578979737E-02, 9.203640128548601E-04));
+            new Point3D(-1.210067509638803E-02, 1.616688578979737E-02, 9.203640128548601E-04),
+            "The second planet from the Sun. Its thick atmosphere traps heat, making it the hottest planet.");
     
     public static final Body EARTH = new Body("Earth", 0.0000029861, kmToAU(6371), Color.BLUE,
             new Point3D(8.217896106478431E-01, 5.586924462436930E-01, -4.184891455262764E-05),
-            new Point3D(-9.945752095816504E-03, 1.415903687034667E-02, -7.952403014471578E-07));
+            new Point3D(-9.945752095816504E-03, 1.415903687034667E-02, -7.952403014471578E-07),
+            "Our home planet, the third planet from the Sun. Liquid water covers most of its surface.");
     
     public static final Body MARS = new Body("Mars", 3.20855E-7, kmToAU(3389.5), Color.ROSYBROWN,
             new Point3D(-2.352021638316075E-01, 1.571997544521290E+00, 3.871045960235844E-02),
-            new Point3D(-1.330964221868380E-02, -8.823242552545569E-04, 3.078603636747692E-04));
+            new Point3D(-1.330964221868380E-02, -8.823242552545569E-04, 3.078603636747692E-04),
+            "The fourth planet from the Sun. Iron oxide gives its surface a reddish colour.");
     
     public static final Body JUPITER = new Body("Jupiter", 0.0009490625, kmToAU(69886), Color.ORANGE,
             new Point3D(-3.643858817382849E+00, 3.869622673542852E+00, 6.545204133720292E-02),
-            new Point3D(-5.586032451617269E-03, -4.825359970632274E-03, 1.450368585991290E-04));
+            new Point3D(-5.586032451617269E-03, -4.825359970632274E-03, 1.450368585991290E-04),
+            "The largest planet in the solar system. Its Great Red Spot is a giant storm.");
     
     public static final Body SATURN = new Body("Saturn", 0.0002858, kmToAU(58232), Color.BISQUE,
             new Point3D(9.221381096669472E+00, 1.914046918740637E+00, -4.004026015314515E-01),
-            new Point3D(-1.443758160331379E-03, 5.448117880473655E-03, -3.737486435801490E-05));
+            new Point3D(-1.443758160331379E-03, 5.448117880473655E-03, -3.737486435801490E-05),
+            "The sixth planet from the Sun. Its bright rings are made mostly of chunks of ice.");
     
-    public static final Body URANUS = new Body("Uranus", 0.0009490625, kmToAU(25362), Color.CYAN,
+    public static final Body URANUS = new Body("Uranus", 0.00004366, kmToAU(25362), Color.CYAN,
             new Point3D(8.835333962643675E+00, 1.731205155817433E+01, -5.026430549691411E-02),
-            new Point3D(-3.538037196545882E-03, 1.602096142851125E-03, 5.189560992457683E-05));
+            new Point3D(-3.538037196545882E-03, 1.602096142851125E-03, 5.189560992457683E-05),
+            "An ice giant that rotates on its side. Methane in its atmosphere helps give it a blue-green colour.");
     
-    public static final Body NEPTUNE = new Body("Neptune", 0.0009490625, kmToAU(24622), Color.AQUA,
+    public static final Body NEPTUNE = new Body("Neptune", 0.00005150, kmToAU(24622), Color.AQUA,
             new Point3D(2.983282788330961E+01, 1.465245680617243E+00, -7.176643755423113E-01),
-            new Point3D(-1.803391324406298E-04, 3.150842160711341E-03, -6.096940839377589E-05));
+            new Point3D(-1.803391324406298E-04, 3.150842160711341E-03, -6.096940839377589E-05),
+            "The farthest planet from the Sun. This ice giant has the fastest winds in the solar system.");
     
     
+    static List<Body> newSimulationBodies() {
+        return List.of(SUN, MERCURY, VENUS, EARTH, MARS, JUPITER, SATURN, URANUS, NEPTUNE).stream()
+                .map(body -> new Body(body.getName(), body.getMass(), body.getRadius(), body.getColor(),
+                        body.getPosition(), body.getVelocity(), body.getDescription()))
+                .toList();
+    }
+
     public static double kmToAU(double km) {
         return km * 6.684587E-9;
     }
