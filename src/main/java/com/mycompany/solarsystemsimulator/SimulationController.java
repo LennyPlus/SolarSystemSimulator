@@ -172,6 +172,7 @@ public class SimulationController implements Initializable {
         simulationPane.requestFocus();
     }
     
+    //ActionEvents for the menu items
     @FXML
     void onMenuItemExitToMainMenu(ActionEvent event) throws IOException {
         System.out.println("MenuItemClosePressed");
@@ -188,6 +189,15 @@ public class SimulationController implements Initializable {
         System.out.println("MenuItemPauseSimulation");
         pauseSimulation();
     }
+
+    @FXML
+    void onMenuItemSaveSimulation(ActionEvent event) {
+        // TODO
+    }
     
-    
+    @FXML
+    void onMenuItemLoadSimulation(ActionEvent event) {
+        // TODO
+    }
+
 }

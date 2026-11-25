@@ -25,6 +25,8 @@
                 <Menu text="_Edit">
                   <items>
                     <MenuItem onAction="#onMenuItemPauseSimulation" text="_Pause Simulation" />
+                        <MenuItem onAction="#onMenuItemPauseSimulation" text="_Save Simulation" />
+                        <MenuItem onAction="#onMenuItemLoadSimulation" text="_Load Simulation" />
                   </items>
                 </Menu>
                 <Menu text="_Help">
