@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -112,8 +113,6 @@ public class SimulationController implements Initializable {
                     simulationView.moveCameraBy(10, 0);
                 }
                 
-//                
-                
                 
                 simulation.update();
                 simulationView.render();
@@ -171,6 +170,17 @@ public class SimulationController implements Initializable {
         // Resume also handles Escape or closing the pause menu.
         animationTimer.start();
         simulationPane.requestFocus();
+    }
+    
+    @FXML
+    void onMenuItemExitToMainMenu(ActionEvent event) throws IOException {
+        System.out.println("MenuItemClosePressed");
+        App.setRoot("primary");
+    }
+    
+    @FXML
+    void onMenuItemExit(ActionEvent event) {
+        App.closeWindow();
     }
     
 }
