@@ -14,7 +14,7 @@
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
-            <MenuBar BorderPane.alignment="CENTER">
+            <MenuBar style="-fx-background-color: LIGHTGREY;" BorderPane.alignment="CENTER">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
@@ -24,7 +24,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem mnemonicParsing="false" onAction="#onMenuItemPauseSimulation" text="Pause Simulation" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">

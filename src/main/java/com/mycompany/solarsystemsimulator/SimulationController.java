@@ -183,4 +183,11 @@ public class SimulationController implements Initializable {
         App.closeWindow();
     }
     
+    @FXML
+    void onMenuItemPauseSimulation(ActionEvent event) {
+        System.out.println("MenuItemPauseSimulation");
+        pauseSimulation();
+    }
+    
+    
 }
