@@ -21,3 +21,41 @@
 .button:hover {
     -fx-border-color: #d4efff;
 }
+
+#timestepValueLabel, #lengthValueLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+.setup-hint {
+    -fx-text-fill: #b5cadf;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+}
+
+#timestepValueLabel, #lengthValueLabel {
+    -fx-text-fill: #d9efff;
+    -fx-background-color: #17283b;
+    -fx-background-radius: 6;
+    -fx-padding: 7 14 7 14;
+}
+
+#setupBox .slider .track {
+    -fx-background-color: #30465e;
+    -fx-background-radius: 5;
+    -fx-pref-height: 8;
+}
+
+#setupBox .slider .thumb {
+    -fx-background-color: #86ceff;
+    -fx-background-radius: 10;
+    -fx-padding: 9;
+}
+
+#setupBox .slider .thumb:hover {
+    -fx-background-color: #d4efff;
+}
+
+#setupBox .button {
+    -fx-min-width: 260;
+}
