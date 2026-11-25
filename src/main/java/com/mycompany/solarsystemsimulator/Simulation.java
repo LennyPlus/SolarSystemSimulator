@@ -21,6 +21,10 @@ public class Simulation {
         this.timestep = timestep;
         this.bodies = bodies;
     }
+    public void setTimestep(double timestep) {
+        this.timestep = timestep;
+    }
+
     
     public void update() {
         bodies.stream().forEach(body -> body.setAcceleration(Point3D.ZERO));

@@ -33,6 +33,12 @@ import javafx.scene.layout.Pane;
 public class SimulationController implements Initializable {
 
     @FXML
+    private Label simulationTimeLabel;
+
+    private double elapsedDays;
+
+
+    @FXML
     private Canvas simulationCanvas;
     
     @FXML
@@ -79,7 +85,7 @@ public class SimulationController implements Initializable {
         simulationCanvas.heightProperty().bind(simulationPane.heightProperty());
         
         List<Body> bodies = SolarSystemData.newSimulationBodies();
-        simulation = new Simulation(1, bodies);
+        simulation = new Simulation(SetupController.getTimestep(), bodies);
         simulationView = new SimulationView(simulationCanvas, simulation);
 
         List<Body> planets = bodies.stream().filter(body -> body.getDescription() != null).toList();
@@ -114,7 +120,21 @@ public class SimulationController implements Initializable {
                 }
                 
                 
-                simulation.update();
+                int length = SetupController.getSimulationLength();
+                if (elapsedDays < length) {
+                    double step = SetupController.getTimestep();
+                    if (elapsedDays + step >= length) {
+                        step = length - elapsedDays;
+                    }
+                    simulation.setTimestep(step);
+                    simulation.update();
+                    elapsedDays += step;
+                    if (elapsedDays >= length) {
+                        simulationTimeLabel.setText("Simulation complete: " + length + " days");
+                    } else {
+                        simulationTimeLabel.setText("Day " + (int) elapsedDays + " / " + length);
+                    }
+                }
                 simulationView.render();
             }
         };

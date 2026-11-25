@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox fx:id="setupBox" alignment="CENTER" prefHeight="600.0" prefWidth="900.0" spacing="20.0" style="-fx-background-color: #101010;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.solarsystemsimulator.SetupController">
    <children>
       <Label style="-fx-text-fill: white; -fx-font-size: 28px;" text="Simulation Setup" />
-      <TextField fx:id="timestepField" promptText="Timestep (days)" style="-fx-font-size: 16px;" />
-      <TextField fx:id="lengthField" promptText="Simulation length (days)" style="-fx-font-size: 16px;" />
+      <Label fx:id="timestepValueLabel" text="Timestep: 1.0 days" />
+      <Slider fx:id="timestepSlider" max="2.0" min="0.1" value="1.0" />
+      <Label fx:id="lengthValueLabel" layoutX="406.0" layoutY="393.0" text="Simulation length: 365 days" />
+      <Slider fx:id="lengthSlider" max="3650.0" min="30.0" value="365.0" />
       <Button mnemonicParsing="false" onAction="#startSimulation" prefWidth="220.0" style="-fx-font-size: 16px; -fx-background-color: #dce7f5;" text="Start Simulation" />
       <Button mnemonicParsing="false" onAction="#backToMenu" prefWidth="220.0" style="-fx-font-size: 16px; -fx-background-color: #dce7f5;" text="Back to Main Menu" />
    </children>
