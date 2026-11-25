@@ -16,18 +16,18 @@
          <top>
             <MenuBar style="-fx-background-color: LIGHTGREY;" BorderPane.alignment="CENTER">
               <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu text="_File">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#onMenuItemExitToMainMenu" text="Exit to main menu" />
+                    <MenuItem onAction="#onMenuItemExitToMainMenu" text="_Exit to main menu" />
                         <MenuItem mnemonicParsing="false" onAction="#onMenuItemExit" text="Exit" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                <Menu text="_Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#onMenuItemPauseSimulation" text="Pause Simulation" />
+                    <MenuItem onAction="#onMenuItemPauseSimulation" text="_Pause Simulation" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu text="_Help">
                   <items>
                     <MenuItem mnemonicParsing="false" text="About" />
                   </items>
