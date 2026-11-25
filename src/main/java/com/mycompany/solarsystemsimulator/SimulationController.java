@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -112,8 +113,6 @@ public class SimulationController implements Initializable {
                     simulationView.moveCameraBy(10, 0);
                 }
                 
-//                
-                
                 
                 simulation.update();
                 simulationView.render();
@@ -173,4 +172,32 @@ public class SimulationController implements Initializable {
         simulationPane.requestFocus();
     }
     
+    //ActionEvents for the menu items
+    @FXML
+    void onMenuItemExitToMainMenu(ActionEvent event) throws IOException {
+        System.out.println("MenuItemClosePressed");
+        App.setRoot("primary");
+    }
+    
+    @FXML
+    void onMenuItemExit(ActionEvent event) {
+        App.closeWindow();
+    }
+    
+    @FXML
+    void onMenuItemPauseSimulation(ActionEvent event) {
+        System.out.println("MenuItemPauseSimulation");
+        pauseSimulation();
+    }
+
+    @FXML
+    void onMenuItemSaveSimulation(ActionEvent event) {
+        // TODO
+    }
+    
+    @FXML
+    void onMenuItemLoadSimulation(ActionEvent event) {
+        // TODO
+    }
+
 }
