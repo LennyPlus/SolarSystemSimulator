@@ -39,6 +39,7 @@ public class SimulationView {
     
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         
         
@@ -57,6 +58,15 @@ public class SimulationView {
 
         // Restores the saved transform
         gc.restore();
+
+        // Draw names after restoring the transform so the text stays the same size.
+        gc.setFill(Color.WHITE);
+        for (Body body : simulation.getBodies()) {
+            Point2D center = scaledPosition(body);
+            double x = screenOriginX() + center.getX() * zoomX;
+            double y = screenOriginY() + center.getY() * zoomY;
+            gc.fillText(body.getName(), x + drawRadius(body) * zoomX + 6, y - 8);
+        }
     }
 
     Body findPlanetAt(double canvasX, double canvasY) {
