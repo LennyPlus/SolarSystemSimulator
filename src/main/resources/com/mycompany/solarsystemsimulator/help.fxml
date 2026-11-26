@@ -17,7 +17,7 @@
     </VBox>
     <VBox maxWidth="640" spacing="6" styleClass="help-card">
         <Label text="2. Move and zoom" styleClass="help-heading" />
-        <Label text="Use W, A, S and D to move the view. Use the Up arrow to zoom in and the Down arrow to zoom out. Body names stay beside each object." wrapText="true" styleClass="help-text" />
+        <Label text="Use W, A, S and D to move the view. Use the Up arrow to zoom in and the Down arrow to zoom out. Body names stay beside each object. Click View Full System to fit all the bodies on screen again." wrapText="true" styleClass="help-text" />
     </VBox>
     <VBox maxWidth="640" spacing="6" styleClass="help-card">
         <Label text="3. Explore the planets" styleClass="help-heading" />

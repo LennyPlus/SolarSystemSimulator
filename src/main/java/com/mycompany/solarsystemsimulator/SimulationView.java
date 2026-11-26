@@ -52,7 +52,7 @@ public class SimulationView {
         
         for (Body body : simulation.getBodies()) {
             Point2D center = scaledPosition(body);
-            double radius = drawRadius(body);
+            double radius = Math.max(drawRadius(body), 2 / Math.min(zoomX, zoomY));
             gc.setFill(body.getColor());
             gc.fillOval(center.getX() - radius, center.getY() - radius, radius * 2, radius * 2);
         }
@@ -121,6 +121,28 @@ public class SimulationView {
 
     private static double drawRadius(Body body) {
         return Math.min(Math.max(body.getRadius() * PLANET_SCALE_FACTOR, 0.5), 5);
+    }
+
+    public void showFullSystem() {
+        double minX = 0;
+        double maxX = 0;
+        double minY = 0;
+        double maxY = 0;
+        for (Body body : simulation.getBodies()) {
+            Point2D point = scaledPosition(body);
+            minX = Math.min(minX, point.getX());
+            maxX = Math.max(maxX, point.getX());
+            minY = Math.min(minY, point.getY());
+            maxY = Math.max(maxY, point.getY());
+        }
+
+        // Leave room on the left for the facts panel and around the body labels.
+        double widthScale = (canvas.getWidth() - 420) / Math.max(maxX - minX, 1);
+        double heightScale = (canvas.getHeight() - 120) / Math.max(maxY - minY, 1);
+        zoomX = Math.min(widthScale, heightScale);
+        zoomY = zoomX;
+        cameraX = 140 - (minX + maxX) / 2 * zoomX;
+        cameraY = -(minY + maxY) / 2 * zoomY;
     }
 
     public void setSelectedBody(Body selectedBody) {

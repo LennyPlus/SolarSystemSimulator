@@ -198,6 +198,12 @@ public class SimulationController implements Initializable {
         simulationPane.requestFocus();
     }
     
+    @FXML
+    private void showFullSystem() {
+        simulationView.showFullSystem();
+        simulationPane.requestFocus();
+    }
+
     //ActionEvents for the menu items
     @FXML
     void onMenuItemExitToMainMenu(ActionEvent event) throws IOException {
