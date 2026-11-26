@@ -38,10 +38,12 @@ public class SimulationView {
         this.simulation = simulation;
         
         // Center the camera on (0,0)
-        cameraX = canvas.getWidth() / 2;
-        cameraY = canvas.getHeight() / 2;
+//        cameraX = canvas.getWidth() / 2;
+        cameraX = 450;
+//        cameraY = canvas.getHeight() / 2;;
+        cameraY = 300;
     }
-    
+
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         gc.setFill(Color.BLACK);
@@ -147,8 +149,9 @@ public class SimulationView {
         double heightScale = (canvas.getHeight() - 120) / Math.max(maxY - minY, 1);
         zoomX = Math.min(widthScale, heightScale);
         zoomY = zoomX;
-        cameraX = 140 - (minX + maxX) / 2 * zoomX;
-        cameraY = -(minY + maxY) / 2 * zoomY;
+
+        cameraX = getCanvasWidth() / 2;
+        cameraY = getCanvasHeight() / 2;
     }
 
     public void setSelectedBody(Body selectedBody) {
@@ -191,7 +194,14 @@ public class SimulationView {
         return canvas;
     }
     
-    
+    public double getCanvasWidth() {
+        return canvas.getWidth();
+    }
+
+    public double getCanvasHeight() {
+        return canvas.getHeight();
+    }
+
     public void moveCameraBy(double x, double y) {
         setCameraX(cameraX + x);
         setCameraY(cameraY + y);
