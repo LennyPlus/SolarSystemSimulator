@@ -20,6 +20,7 @@ public class SimulationView {
     private Canvas canvas;
     private GraphicsContext gc;
     private Simulation simulation;
+    private Body selectedBody;
     private static final double DISTANCE_SCALE = 100; // Pixels per AU
     private static final double PLANET_SCALE_FACTOR = 100000;
     
@@ -60,11 +61,20 @@ public class SimulationView {
         gc.restore();
 
         // Draw names after restoring the transform so the text stays the same size.
-        gc.setFill(Color.WHITE);
         for (Body body : simulation.getBodies()) {
             Point2D center = scaledPosition(body);
             double x = screenOriginX() + center.getX() * zoomX;
             double y = screenOriginY() + center.getY() * zoomY;
+            if (body == selectedBody) {
+                double radiusX = Math.max(drawRadius(body) * zoomX, 6) + 4;
+                double radiusY = Math.max(drawRadius(body) * zoomY, 6) + 4;
+                gc.setStroke(Color.LIGHTBLUE);
+                gc.setLineWidth(2);
+                gc.strokeOval(x - radiusX, y - radiusY, radiusX * 2, radiusY * 2);
+                gc.setFill(Color.LIGHTBLUE);
+            } else {
+                gc.setFill(Color.WHITE);
+            }
             gc.fillText(body.getName(), x + drawRadius(body) * zoomX + 6, y - 8);
         }
     }
@@ -111,6 +121,10 @@ public class SimulationView {
 
     private static double drawRadius(Body body) {
         return Math.min(Math.max(body.getRadius() * PLANET_SCALE_FACTOR, 0.5), 5);
+    }
+
+    public void setSelectedBody(Body selectedBody) {
+        this.selectedBody = selectedBody;
     }
 
     public void setCameraX(double cameraX) {

@@ -95,6 +95,7 @@ public class SimulationController implements Initializable {
         planetSelector.getItems().setAll(planets.stream().map(Body::getName).toList());
         planetSelector.getSelectionModel().selectedIndexProperty().addListener((obs, previous, selected) -> {
             int index = selected.intValue();
+            simulationView.setSelectedBody(index < 0 ? null : planets.get(index));
             planetName.setText(index < 0 ? "Planet facts" : planets.get(index).getName());
             planetFacts.setText(index < 0 ? "" : planets.get(index).getDescription());
         });
