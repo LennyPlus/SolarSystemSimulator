@@ -13,8 +13,8 @@
       <Slider fx:id="timestepSlider" max="2.0" min="0.1" value="1.0" />
       <Label fx:id="lengthValueLabel" layoutX="406.0" layoutY="393.0" text="Simulation length: 365 days" />
       <Slider fx:id="lengthSlider" max="3650.0" min="30.0" value="365.0" />
-      <Button mnemonicParsing="false" onAction="#startSimulation" prefWidth="220.0" style="-fx-font-size: 16px; -fx-background-color: #dce7f5;" text="Start Simulation" />
-      <Button mnemonicParsing="false" onAction="#backToMenu" prefWidth="220.0" style="-fx-font-size: 16px; -fx-background-color: #dce7f5;" text="Back to Main Menu" />
+      <Button mnemonicParsing="false" onAction="#startSimulation" prefWidth="220.0" style="-fx-font-size: 16px;" text="Start Simulation" />
+      <Button mnemonicParsing="false" onAction="#backToMenu" prefWidth="220.0" style="-fx-font-size: 16px;" text="Back to Main Menu" />
    </children>
    <padding>
       <Insets bottom="30.0" left="260.0" right="260.0" top="30.0" />

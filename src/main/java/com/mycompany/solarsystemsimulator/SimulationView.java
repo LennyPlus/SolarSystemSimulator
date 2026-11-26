@@ -86,9 +86,6 @@ public class SimulationView {
     }
 
     Body findPlanetAt(double canvasX, double canvasY) {
-//        return findPlanetAt(simulation.getBodies(), new Point2D(canvasX, canvasY),
-//                new Point2D(screenOriginX(), screenOriginY()), zoomX, zoomY);
-//        
         return findPlanetAt(simulation.getBodies(), new Point2D(canvasX, canvasY),
                 new Point2D(cameraX, cameraY), zoomX, zoomY);
     }

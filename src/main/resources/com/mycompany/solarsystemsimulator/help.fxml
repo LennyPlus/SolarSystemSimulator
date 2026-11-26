@@ -5,27 +5,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="900.0" spacing="14.0"
-      style="-fx-background-color: #101010;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.mycompany.solarsystemsimulator.PrimaryController">
-    <padding><Insets top="24" right="60" bottom="24" left="60" /></padding>
-    <Label text="How to Use" styleClass="help-title" />
-    <Label text="A quick guide to exploring the solar system" styleClass="setup-hint" />
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="900.0" spacing="14.0" style="-fx-background-color: #101010;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.solarsystemsimulator.PrimaryController">
+    <padding><Insets bottom="24" left="60" right="60" top="24" /></padding>
+    <Label styleClass="help-title" text="How to Use" />
+    <Label styleClass="setup-hint" text="A quick guide to exploring the solar system" />
     <VBox maxWidth="640" spacing="6" styleClass="help-card">
-        <Label text="1. Set up your simulation" styleClass="help-heading" />
-        <Label text="Choose New Simulation, then move the sliders. Timestep is the number of days advanced per update; a smaller value gives smaller steps. Simulation length is the total number of days. Click Start Simulation." wrapText="true" styleClass="help-text" />
+        <Label styleClass="help-heading" text="1. Set up your simulation" />
+        <Label styleClass="help-text" text="Choose New Simulation, then move the sliders. Timestep is the number of days advanced per update; a smaller value gives smaller steps. Simulation length is the total number of days. Click Start Simulation." wrapText="true" />
     </VBox>
     <VBox maxWidth="640" spacing="6" styleClass="help-card">
-        <Label text="2. Move and zoom" styleClass="help-heading" />
-        <Label text="Use W, A, S and D to move the view. Use the Up arrow to zoom in and the Down arrow to zoom out. Body names stay beside each object. Click View Full System to fit all the bodies on screen again." wrapText="true" styleClass="help-text" />
+        <Label styleClass="help-heading" text="2. Move and zoom" />
+        <Label styleClass="help-text" text="Use W, A, S and D to move the view. Use the Up arrow to zoom in and the Down arrow to zoom out. Body names stay beside each object. Click View Full System to fit all the bodies on screen again." wrapText="true" />
     </VBox>
     <VBox maxWidth="640" spacing="6" styleClass="help-card">
-        <Label text="3. Explore the planets" styleClass="help-heading" />
-        <Label text="Click a planet to show its name and facts in the panel. You can also choose a planet from the list. Zoom in if a planet is too small to click." wrapText="true" styleClass="help-text" />
+        <Label styleClass="help-heading" text="3. Explore the planets" />
+        <Label styleClass="help-text" text="Click a planet to show its name and facts in the panel. You can also choose a planet from the list. Zoom in if a planet is too small to click." wrapText="true" />
     </VBox>
     <VBox maxWidth="640" spacing="6" styleClass="help-card">
-        <Label text="4. Pause or return" styleClass="help-heading" />
-        <Label text="Press Escape or choose Edit > Pause Simulation. Choose Resume to continue, or Back to Main Menu to leave. The day counter shows when the simulation is complete. Saving and loading are not available yet." wrapText="true" styleClass="help-text" />
+        <Label styleClass="help-heading" text="4. Pause or return" />
+        <Label styleClass="help-text" text="Press Escape or choose Edit &gt; Pause Simulation. Choose Resume to continue, or Back to Main Menu to leave. The day counter shows when the simulation is complete. Saving and loading are not available yet." wrapText="true" />
     </VBox>
-    <Button text="Back to Main Menu" onAction="#backToMenu" prefWidth="240" style="-fx-background-color: #dce7f5; -fx-font-size: 16px;" />
+    <Button onAction="#backToMenu" prefWidth="240" style="-fx-font-size: 16px;" text="Back to Main Menu" />
 </VBox>

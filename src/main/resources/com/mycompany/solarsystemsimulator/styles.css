@@ -10,16 +10,17 @@
 }
 
 .button {
-    -fx-text-fill: #101b2e;
-    -fx-padding: 10 18 10 18;
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
-    -fx-border-color: #68b9ef;
-    -fx-border-width: 2;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #686868;
+    -fx-background-radius: 0;
+    -fx-text-fill: #000000;
+    -fx-padding: 10 10 10 10;
+    -fx-border-width: 3;
 }
 
 .button:hover {
-    -fx-border-color: #d4efff;
+    -fx-background-color: #8f8f8f;
+    -fx-border-color: #525252;
 }
 
 #timestepValueLabel, #lengthValueLabel {
@@ -28,37 +29,46 @@
 }
 
 .setup-hint {
-    -fx-text-fill: #b5cadf;
+    -fx-text-fill: #dbdbdb;
     -fx-font-size: 14px;
     -fx-font-weight: normal;
 }
 
 #timestepValueLabel, #lengthValueLabel {
-    -fx-text-fill: #d9efff;
-    -fx-background-color: #17283b;
-    -fx-background-radius: 6;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #3d3d3d;
+    -fx-background-radius: 2;
     -fx-padding: 7 14 7 14;
 }
 
 #setupBox .slider .track {
-    -fx-background-color: #30465e;
+    -fx-background-color: #5a5a5a;
     -fx-background-radius: 5;
     -fx-pref-height: 8;
 }
 
 #setupBox .slider .thumb {
-    -fx-background-color: #86ceff;
+    -fx-background-color: #ffffff;
     -fx-background-radius: 10;
     -fx-padding: 9;
 }
 
 #setupBox .slider .thumb:hover {
-    -fx-background-color: #d4efff;
+    -fx-background-color: #686868;
 }
 
 #setupBox .button {
     -fx-min-width: 260;
 }
+
+#infoBox {
+    -fx-background-color: rgb(230, 230, 230);
+    -fx-border-color: #757575;
+    -fx-border-width: 3;
+    -fx-border-radius: 0;
+    -fx-padding: 14;
+}
+
 
 .help-title {
     -fx-text-fill: white;
@@ -66,15 +76,15 @@
 }
 
 .help-card {
-    -fx-background-color: #17283b;
-    -fx-background-radius: 8;
-    -fx-border-color: #35506b;
-    -fx-border-radius: 8;
+    -fx-background-color: #363636;
+    -fx-background-radius: 0;
+    -fx-border-color: #696969;
+    -fx-border-radius: 0;
     -fx-padding: 12 18 12 18;
 }
 
 .help-heading {
-    -fx-text-fill: #86ceff;
+    -fx-text-fill: #ffffff;
     -fx-font-size: 16px;
 }
 

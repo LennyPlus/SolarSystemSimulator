@@ -42,12 +42,12 @@
             <Canvas fx:id="simulationCanvas" height="600.0" width="900.0" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
-      <VBox layoutX="14.0" layoutY="50.0" prefWidth="260.0" spacing="6.0" style="-fx-background-color: #17283b; -fx-background-radius: 8; -fx-border-color: #35506b; -fx-border-radius: 8; -fx-padding: 14;">
-         <Label fx:id="simulationTimeLabel" text="Day: 0" style="-fx-text-fill: #86ceff; -fx-font-size: 13px;" />
-         <Label fx:id="planetName" text="Planet facts" style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" />
+      <VBox fx:id="infoBox" layoutX="14.0" layoutY="50.0" prefWidth="260.0" spacing="6.0" stylesheets="@styles.css">
+         <Label fx:id="simulationTimeLabel" style="-fx-text-fill: #000000; -fx-font-size: 13px;" text="Day: 0" />
+         <Label fx:id="planetName" style="-fx-text-fill: BLACK; -fx-font-size: 18px; -fx-font-weight: bold;" text="Planet facts" />
          <ChoiceBox fx:id="planetSelector" accessibleText="Select a planet" prefWidth="232.0" />
-         <Label fx:id="planetFacts" wrapText="true" style="-fx-text-fill: #e0eaf4; -fx-font-size: 13px;" />
-         <Button text="View Full System" onAction="#showFullSystem" prefWidth="232.0" style="-fx-background-color: #dce7f5; -fx-text-fill: #101b2e; -fx-padding: 8; -fx-background-radius: 6;" />
+         <Label fx:id="planetFacts" style="-fx-text-fill: #BLACK; -fx-font-size: 13px;" wrapText="true" />
+         <Button onAction="#showFullSystem" prefWidth="232.0" style="-fx-background-color: #grey; -fx-text-fill: #101b2e; -fx-padding: 8; -fx-border-color: BLACK;" text="View Full System" />
       </VBox>
    </children>
 </Pane>
