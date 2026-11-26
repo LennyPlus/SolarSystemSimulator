@@ -37,7 +37,6 @@ public class SimulationController implements Initializable {
 
     private double elapsedDays;
 
-
     @FXML
     private Canvas simulationCanvas;
     
@@ -67,22 +66,13 @@ public class SimulationController implements Initializable {
         keys.put(KeyCode.D, false);
         keys.put(KeyCode.A, false);
         
-        simulationPane.sceneProperty().addListener((obs, oldScene, newScene) -> {
-            if (newScene != null) {
-                newScene.setOnKeyPressed(event -> {
-                    keys.put(event.getCode(), true);
-                });
-                
-                newScene.setOnKeyReleased(event -> {
-                    keys.put(event.getCode(), false);
-                });
-            }
-        });
-        
-        
         // Make the canvas the same size as its parent
         simulationCanvas.widthProperty().bind(simulationPane.widthProperty());
         simulationCanvas.heightProperty().bind(simulationPane.heightProperty());
+        
+        // Initialize mouse dragging
+        initializeMouseControls();
+        
         
         List<Body> bodies = SolarSystemData.newSimulationBodies();
         simulation = new Simulation(SetupController.getTimestep(), bodies);
@@ -111,11 +101,14 @@ public class SimulationController implements Initializable {
             public void handle(long l) {
                 if (keys.get(KeyCode.W)) {
                     simulationView.moveCameraBy(0, 10);
-                } else if (keys.get(KeyCode.S)) {
+                }
+                if (keys.get(KeyCode.S)) {
                     simulationView.moveCameraBy(0, -10);
-                } else if (keys.get(KeyCode.D)) {
+                }
+                if (keys.get(KeyCode.D)) {
                     simulationView.moveCameraBy(-10, 0);
-                } else if (keys.get(KeyCode.A)) {
+                }
+                if (keys.get(KeyCode.A)) {
                     simulationView.moveCameraBy(10, 0);
                 }
                 
@@ -146,19 +139,62 @@ public class SimulationController implements Initializable {
                 event.consume();
                 pauseSimulation();
             }
-            
-            if (event.getCode() == KeyCode.UP) {
-                simulationView.setZoomX(simulationView.getZoomX() * 1.2);
-                simulationView.setZoomY(simulationView.getZoomY() * 1.2);
-            } else if (event.getCode() == KeyCode.DOWN) {
-                simulationView.setZoomX(simulationView.getZoomX() * 0.8);
-                simulationView.setZoomY(simulationView.getZoomY() * 0.8);
-            }
+
+            keys.put(event.getCode(), true);
             
         });
 
+        simulationPane.setOnKeyReleased(event -> {
+            keys.put(event.getCode(), false);
+        });
+        
+        // Handle zooming with the mouse
+        simulationPane.setOnScroll(event -> {
+            double oldZoom = simulationView.getZoomX();
+            double zoomFactor = event.getDeltaY() > 0 ? 1.2 : 0.8;
+            double newZoom = oldZoom * zoomFactor;
+
+            double mouseX = event.getX();
+            double mouseY = event.getY();
+
+            double translateX = simulationView.getCameraX();
+            double translateY = simulationView.getCameraY();
+
+            double newTranslateX = mouseX - (mouseX - translateX) * zoomFactor;
+            double newTranslateY= mouseY - (mouseY - translateY) * zoomFactor;
+
+            simulationView.setZoomX(newZoom);
+            simulationView.setZoomY(newZoom);
+
+            simulationView.setCameraX(newTranslateX);
+            simulationView.setCameraY(newTranslateY);
+            
+        });
+        
         animationTimer.start();
     }    
+    
+    // Used to calculate the amount we should move the canvas by when the user drags their mouse
+    private double previousMouseX;
+    private double previousMouseY;
+
+    // Initialize the mouse dragging
+    private void initializeMouseControls() {
+        simulationPane.setOnMousePressed(event -> {
+            previousMouseX = event.getX();
+            previousMouseY = event.getY();
+        });
+
+        simulationPane.setOnMouseDragged(event -> {
+            double deltaX = event.getX() - previousMouseX;
+            double deltaY = event.getY() - previousMouseY;
+
+            simulationView.moveCameraBy(deltaX, deltaY);
+
+            previousMouseX = event.getX();
+            previousMouseY = event.getY();
+        });
+    }
     
     private void pauseSimulation() {
         animationTimer.stop();

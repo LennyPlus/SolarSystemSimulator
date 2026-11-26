@@ -24,8 +24,8 @@ public class SimulationView {
     private static final double PLANET_SCALE_FACTOR = 100000;
     
     // Used for camera translation
-    private double cameraX = 0;
-    private double cameraY = 0;
+    private double cameraX;
+    private double cameraY;
     
     private double zoomX = 1;
     private double zoomY = 1;
@@ -35,6 +35,10 @@ public class SimulationView {
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
         this.simulation = simulation;
+        
+        // Center the camera on (0,0)
+        cameraX = canvas.getWidth() / 2;
+        cameraY = canvas.getHeight() / 2;
     }
     
     public void render() {
@@ -42,11 +46,15 @@ public class SimulationView {
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         
         
-        // Saves the currnt transform
+        // Saves the current transform
         gc.save();
-        // Center the canvas and scales everything
-        gc.translate(screenOriginX(), screenOriginY());
-        gc.scale(zoomX, zoomY);
+        // Sets the transform
+        gc.setTransform(
+            zoomX, 0,
+            0, zoomY,
+            cameraX, cameraY
+        );
+        
         
         for (Body body : simulation.getBodies()) {
             Point2D center = scaledPosition(body);
@@ -87,7 +95,7 @@ public class SimulationView {
         return closest;
     }
 
-    private double screenOriginX() {
+     private double screenOriginX() {
         return canvas.getWidth() / 2 + cameraX;
     }
 
@@ -111,6 +119,14 @@ public class SimulationView {
         this.cameraY = cameraY;
     }
 
+    public double getCameraX() {
+        return cameraX;
+    }
+
+    public double getCameraY() {
+        return cameraY;
+    }
+
     public void setZoomX(double zoomX) {
         this.zoomX = zoomX;
     }
@@ -126,7 +142,10 @@ public class SimulationView {
     public double getZoomY() {
         return zoomY;
     }
-    
+
+    public Canvas getCanvas() {
+        return canvas;
+    }
     
     
     public void moveCameraBy(double x, double y) {
