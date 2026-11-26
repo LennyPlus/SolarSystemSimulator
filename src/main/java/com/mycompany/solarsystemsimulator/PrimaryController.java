@@ -30,21 +30,13 @@ public class PrimaryController {
     }
 
     @FXML
-    private void creditsButtonPressed(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("How to Use");
-        alert.setHeaderText("Solar System Simulator - Quick Guide");
-        alert.setContentText("1. Click New Simulation.\n\n"
-                + "2. Choose the timestep and length using the sliders.\n"
-                + "Timestep: days advanced in each update.\n"
-                + "Length: total days to simulate.\n\n"
-                + "3. Click Start Simulation.\n\n"
-                + "4. Move with W, A, S and D.\n"
-                + "Zoom with the Up and Down arrows.\n\n"
-                + "5. Click a planet or select it to read its facts.\n\n"
-                + "6. Press Escape for Resume or Main Menu.\n\n"
-                + "Load Simulation is not available yet.");
-        alert.showAndWait();
+    private void creditsButtonPressed(ActionEvent event) throws IOException {
+        App.setRoot("help");
+    }
+
+    @FXML
+    private void backToMenu() throws IOException {
+        App.setRoot("primary");
     }
 
     @FXML

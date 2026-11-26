@@ -49,6 +49,9 @@ public class SimulationController implements Initializable {
     @FXML
     private Label planetFacts;
 
+    @FXML
+    private Label planetName;
+
     private AnimationTimer animationTimer;
     
     Simulation simulation;
@@ -82,11 +85,14 @@ public class SimulationController implements Initializable {
         planetSelector.getItems().setAll(planets.stream().map(Body::getName).toList());
         planetSelector.getSelectionModel().selectedIndexProperty().addListener((obs, previous, selected) -> {
             int index = selected.intValue();
+            simulationView.setSelectedBody(index < 0 ? null : planets.get(index));
+            planetName.setText(index < 0 ? "Planet facts" : planets.get(index).getName());
             planetFacts.setText(index < 0 ? "" : planets.get(index).getDescription());
         });
         planetSelector.getSelectionModel().selectFirst();
         simulationCanvas.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY && event.isStillSincePress()) {
+                simulationPane.requestFocus();
                 Body planet = simulationView.findPlanetAt(event.getX(), event.getY());
                 if (planet != null) {
                     planetSelector.getSelectionModel().select(planets.indexOf(planet));
@@ -228,6 +234,12 @@ public class SimulationController implements Initializable {
         simulationPane.requestFocus();
     }
     
+    @FXML
+    private void showFullSystem() {
+        simulationView.showFullSystem();
+        simulationPane.requestFocus();
+    }
+
     //ActionEvents for the menu items
     @FXML
     void onMenuItemExitToMainMenu(ActionEvent event) throws IOException {
