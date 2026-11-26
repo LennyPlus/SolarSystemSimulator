@@ -148,18 +148,8 @@ public class SimulationController implements Initializable {
             keys.put(event.getCode(), false);
         });
         
-        // Handle zooming with the scroll wheel
+        // Handle zooming and dragging with the mouse
         simulationPane.setOnScroll(event -> {
-//            System.out.println(event.getDeltaY());
-//            if (event.getDeltaY()> 0) {
-//                simulationView.setZoomX(simulationView.getZoomX() * 1.2);
-//                simulationView.setZoomY(simulationView.getZoomY() * 1.2);
-//            } else if (event.getDeltaY() < 0) {
-//                simulationView.setZoomX(simulationView.getZoomX() * 0.8);
-//                simulationView.setZoomY(simulationView.getZoomY() * 0.8);
-//            }
-//            System.out.println(simulationView.getZoomX());
-            
             double oldZoom = simulationView.getZoomX();
             double zoomFactor = event.getDeltaY() > 0 ? 1.2 : 0.8;
             double newZoom = oldZoom * zoomFactor;
