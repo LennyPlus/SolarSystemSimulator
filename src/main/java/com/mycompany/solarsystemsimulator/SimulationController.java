@@ -70,6 +70,10 @@ public class SimulationController implements Initializable {
         simulationCanvas.widthProperty().bind(simulationPane.widthProperty());
         simulationCanvas.heightProperty().bind(simulationPane.heightProperty());
         
+        // Initialize mouse dragging
+        initializeMouseControls();
+        
+        
         List<Body> bodies = SolarSystemData.newSimulationBodies();
         simulation = new Simulation(SetupController.getTimestep(), bodies);
         simulationView = new SimulationView(simulationCanvas, simulation);
@@ -146,23 +150,61 @@ public class SimulationController implements Initializable {
         
         // Handle zooming with the scroll wheel
         simulationPane.setOnScroll(event -> {
-            System.out.println(event.getDeltaY());
-            if (event.getDeltaY()> 0) {
-                simulationView.setZoomX(simulationView.getZoomX() * 1.2);
-                simulationView.setZoomY(simulationView.getZoomY() * 1.2);
-            } else if (event.getDeltaY() < 0) {
-                simulationView.setZoomX(simulationView.getZoomX() * 0.8);
-                simulationView.setZoomY(simulationView.getZoomY() * 0.8);
-            }
-            System.out.println(simulationView.getZoomX());
-        });
-        
-        simulationPane.setOnMouseDragged(event -> {
-            System.out.println(event.getScreenX());
+//            System.out.println(event.getDeltaY());
+//            if (event.getDeltaY()> 0) {
+//                simulationView.setZoomX(simulationView.getZoomX() * 1.2);
+//                simulationView.setZoomY(simulationView.getZoomY() * 1.2);
+//            } else if (event.getDeltaY() < 0) {
+//                simulationView.setZoomX(simulationView.getZoomX() * 0.8);
+//                simulationView.setZoomY(simulationView.getZoomY() * 0.8);
+//            }
+//            System.out.println(simulationView.getZoomX());
+            
+            double oldZoom = simulationView.getZoomX();
+            double zoomFactor = event.getDeltaY() > 0 ? 1.2 : 0.8;
+            double newZoom = oldZoom * zoomFactor;
+
+            double mouseX = event.getX();
+            double mouseY = event.getY();
+
+            double translateX = simulationView.getCameraX();
+            double translateY = simulationView.getCameraY();
+
+            double newTranslateX = mouseX - (mouseX - translateX) * zoomFactor;
+            double newTranslateY= mouseY - (mouseY - translateY) * zoomFactor;
+
+            simulationView.setZoomX(newZoom);
+            simulationView.setZoomY(newZoom);
+
+            simulationView.setCameraX(newTranslateX);
+            simulationView.setCameraY(newTranslateY);
+            
         });
         
         animationTimer.start();
     }    
+    
+    // Used to calculate the amount we should move the canvas by when the user drags their mouse
+    private double previousMouseX;
+    private double previousMouseY;
+
+    // Initialize the mouse dragging
+    private void initializeMouseControls() {
+        simulationPane.setOnMousePressed(event -> {
+            previousMouseX = event.getX();
+            previousMouseY = event.getY();
+        });
+
+        simulationPane.setOnMouseDragged(event -> {
+            double deltaX = event.getX() - previousMouseX;
+            double deltaY = event.getY() - previousMouseY;
+
+            simulationView.moveCameraBy(deltaX, deltaY);
+
+            previousMouseX = event.getX();
+            previousMouseY = event.getY();
+        });
+    }
     
     private void pauseSimulation() {
         animationTimer.stop();
