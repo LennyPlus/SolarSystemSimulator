@@ -97,11 +97,14 @@ public class SimulationController implements Initializable {
             public void handle(long l) {
                 if (keys.get(KeyCode.W)) {
                     simulationView.moveCameraBy(0, 10);
-                } else if (keys.get(KeyCode.S)) {
+                }
+                if (keys.get(KeyCode.S)) {
                     simulationView.moveCameraBy(0, -10);
-                } else if (keys.get(KeyCode.D)) {
+                }
+                if (keys.get(KeyCode.D)) {
                     simulationView.moveCameraBy(-10, 0);
-                } else if (keys.get(KeyCode.A)) {
+                }
+                if (keys.get(KeyCode.A)) {
                     simulationView.moveCameraBy(10, 0);
                 }
                 
@@ -152,6 +155,10 @@ public class SimulationController implements Initializable {
                 simulationView.setZoomY(simulationView.getZoomY() * 0.8);
             }
             System.out.println(simulationView.getZoomX());
+        });
+        
+        simulationPane.setOnMouseDragged(event -> {
+            System.out.println(event.getScreenX());
         });
         
         animationTimer.start();
