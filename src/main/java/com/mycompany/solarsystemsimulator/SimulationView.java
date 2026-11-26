@@ -65,31 +65,32 @@ public class SimulationView {
             gc.fillOval(center.getX() - radius, center.getY() - radius, radius * 2, radius * 2);
         }
 
-        // Restores the saved transform
-        gc.restore();
-
         // Draw names after restoring the transform so the text stays the same size.
         for (Body body : simulation.getBodies()) {
             Point2D center = scaledPosition(body);
-            double x = screenOriginX() + center.getX() * zoomX;
-            double y = screenOriginY() + center.getY() * zoomY;
             if (body == selectedBody) {
-                double radiusX = Math.max(drawRadius(body) * zoomX, 6) + 4;
-                double radiusY = Math.max(drawRadius(body) * zoomY, 6) + 4;
-                gc.setStroke(Color.LIGHTBLUE);
+                double radiusX = Math.max(drawRadius(body), 6) + 4;
+                double radiusY = Math.max(drawRadius(body), 6) + 4;
+                gc.setStroke(Color.WHITE);
                 gc.setLineWidth(2);
-                gc.strokeOval(x - radiusX, y - radiusY, radiusX * 2, radiusY * 2);
-                gc.setFill(Color.LIGHTBLUE);
+                gc.strokeOval(center.getX() - radiusX, center.getY() - radiusY, radiusX * 2, radiusY * 2);
+                gc.setFill(Color.WHITE);
             } else {
                 gc.setFill(Color.WHITE);
             }
-            gc.fillText(body.getName(), x + drawRadius(body) * zoomX + 6, y - 8);
+            gc.fillText(body.getName(), center.getX() + 6, center.getY() - 8);
         }
+        
+        // Restores the saved transform
+        gc.restore();
     }
 
     Body findPlanetAt(double canvasX, double canvasY) {
+//        return findPlanetAt(simulation.getBodies(), new Point2D(canvasX, canvasY),
+//                new Point2D(screenOriginX(), screenOriginY()), zoomX, zoomY);
+//        
         return findPlanetAt(simulation.getBodies(), new Point2D(canvasX, canvasY),
-                new Point2D(screenOriginX(), screenOriginY()), zoomX, zoomY);
+                new Point2D(cameraX, cameraY), zoomX, zoomY);
     }
 
     static Body findPlanetAt(List<Body> bodies, Point2D click, Point2D origin, double zoomX, double zoomY) {
