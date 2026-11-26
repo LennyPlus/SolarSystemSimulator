@@ -37,7 +37,6 @@ public class SimulationController implements Initializable {
 
     private double elapsedDays;
 
-
     @FXML
     private Canvas simulationCanvas;
     
@@ -66,19 +65,6 @@ public class SimulationController implements Initializable {
         keys.put(KeyCode.S, false);
         keys.put(KeyCode.D, false);
         keys.put(KeyCode.A, false);
-        
-        simulationPane.sceneProperty().addListener((obs, oldScene, newScene) -> {
-            if (newScene != null) {
-                newScene.setOnKeyPressed(event -> {
-                    keys.put(event.getCode(), true);
-                });
-                
-                newScene.setOnKeyReleased(event -> {
-                    keys.put(event.getCode(), false);
-                });
-            }
-        });
-        
         
         // Make the canvas the same size as its parent
         simulationCanvas.widthProperty().bind(simulationPane.widthProperty());
@@ -146,17 +132,28 @@ public class SimulationController implements Initializable {
                 event.consume();
                 pauseSimulation();
             }
-            
-            if (event.getCode() == KeyCode.UP) {
-                simulationView.setZoomX(simulationView.getZoomX() * 1.2);
-                simulationView.setZoomY(simulationView.getZoomY() * 1.2);
-            } else if (event.getCode() == KeyCode.DOWN) {
-                simulationView.setZoomX(simulationView.getZoomX() * 0.8);
-                simulationView.setZoomY(simulationView.getZoomY() * 0.8);
-            }
+
+            keys.put(event.getCode(), true);
             
         });
 
+        simulationPane.setOnKeyReleased(event -> {
+            keys.put(event.getCode(), false);
+        });
+        
+        // Handle zooming with the scroll wheel
+        simulationPane.setOnScroll(event -> {
+            System.out.println(event.getDeltaY());
+            if (event.getDeltaY()> 0) {
+                simulationView.setZoomX(simulationView.getZoomX() * 1.2);
+                simulationView.setZoomY(simulationView.getZoomY() * 1.2);
+            } else if (event.getDeltaY() < 0) {
+                simulationView.setZoomX(simulationView.getZoomX() * 0.8);
+                simulationView.setZoomY(simulationView.getZoomY() * 0.8);
+            }
+            System.out.println(simulationView.getZoomX());
+        });
+        
         animationTimer.start();
     }    
     
