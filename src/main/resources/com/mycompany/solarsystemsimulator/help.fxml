@@ -15,7 +15,7 @@
     </VBox>
     <VBox maxWidth="640" spacing="6" styleClass="help-card">
         <Label styleClass="help-heading" text="2. Move and zoom" />
-        <Label styleClass="help-text" text="Use W, A, S and D to move the view. Use the Up arrow to zoom in and the Down arrow to zoom out. Body names stay beside each object. Click View Full System to fit all the bodies on screen again." wrapText="true" />
+        <Label styleClass="help-text" text="Click and drag the simulation to move the view. Scroll up to zoom in and scroll down to zoom out around the cursor. Body names stay beside each object. Click View Full System to fit all the bodies on screen again." wrapText="true" />
     </VBox>
     <VBox maxWidth="640" spacing="6" styleClass="help-card">
         <Label styleClass="help-heading" text="3. Explore the planets" />
