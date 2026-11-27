@@ -8,6 +8,7 @@ import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 /**
@@ -21,6 +22,7 @@ public class SimulationView {
     private GraphicsContext gc;
     private Simulation simulation;
     private Body selectedBody;
+    private Image starBackground;
     private static final double DISTANCE_SCALE = 100; // Pixels per AU
     private static final double PLANET_SCALE_FACTOR = 100000;
     
@@ -36,6 +38,7 @@ public class SimulationView {
         this.canvas = canvas;
         this.gc = canvas.getGraphicsContext2D();
         this.simulation = simulation;
+        starBackground = new Image(getClass().getResource("starfield.png").toExternalForm());
         
         // Center the camera on (0,0)
 //        cameraX = canvas.getWidth() / 2;
@@ -48,6 +51,7 @@ public class SimulationView {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        gc.drawImage(starBackground, 0, 0, canvas.getWidth(), canvas.getHeight());
         
         
         // Saves the current transform
